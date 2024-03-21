@@ -59,5 +59,12 @@ public class RegistrationController {
 		return mv;
 	}
 
-	
+	@RequestMapping("/storeEbook")
+    public ModelAndView storeEbook() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("storeEbook"); //
+        return mv;
+    }
 }
+	
+
