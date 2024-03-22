@@ -49,7 +49,7 @@
             left: 0px;
             bottom: 3px;
             border-radius: 5px;
-            background: linear-gradient(to right, #99004d 0%, #ff0080 100%);
+            background: linear-gradient(to right, blue 0%, blue 100%);
         }
 
         .container form .input-box {
@@ -71,7 +71,7 @@
         }
 
         .container form .input-box button[type="submit"] {
-            background: linear-gradient(to right, #99004d 0%, #ff0080 100%);
+            background: linear-gradient(to right, blue 0%, blue 100%);
             font-size: 17px;
             color: #fff;
             border-radius: 5px;
@@ -85,7 +85,7 @@
 
         .container form .input-box button[type="submit"]:hover {
             letter-spacing: 1px;
-            background: linear-gradient(to left, #99004d 0%, #ff0080 100%);
+            background: linear-gradient(to left,  blue 0%, blue 100%);
         }
 
     </style>

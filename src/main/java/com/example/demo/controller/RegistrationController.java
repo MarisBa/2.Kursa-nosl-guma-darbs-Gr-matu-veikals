@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -59,12 +60,18 @@ public class RegistrationController {
 		return mv;
 	}
 
-	@RequestMapping("/storeEbook")
-    public ModelAndView storeEbook() {
+    @GetMapping("/storeEbook")
+    public ModelAndView getbookStore() {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("storeEbook"); //
+        mv.setViewName("storeEbook"); // This assumes "storeEbook.jsp" exists in your configured view resolver
         return mv;
     }
+
+	@GetMapping("/Available_books")
+	public ModelAndView getAvailable_books(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("Available_books");
+		return mv;
+	}
 }
-	
 
