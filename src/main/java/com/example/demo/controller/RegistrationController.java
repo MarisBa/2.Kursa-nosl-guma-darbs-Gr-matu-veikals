@@ -68,10 +68,18 @@ public class RegistrationController {
     }
 
 	@GetMapping("/Available_books")
-	public ModelAndView getAvailable_books(){
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("Available_books");
-		return mv;
+    public ModelAndView getAllBooks() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("Available_books"); // This assumes "storeEbook.jsp" exists in your configured view resolver
+        return mv;
 	}
+
+	@GetMapping("/Register_book")
+    public ModelAndView registerBook() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("Available_books"); // This assumes "storeEbook.jsp" exists in your configured view resolver
+        return mv;
+	}
+
 }
 
