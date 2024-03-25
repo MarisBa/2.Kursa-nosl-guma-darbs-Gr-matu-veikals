@@ -34,7 +34,8 @@
         <a href="#home">EBOOKSTORE</a>
         <a href="/Available_books">Available Books</a>
         <a href="#mybooks">My Books</a>
-        <a href="#newbook" class="right">New book register</a>
+        <a href="/Register_book" class="right">New book register</a>
+
     </div>
 
     <div style="padding:20px">
