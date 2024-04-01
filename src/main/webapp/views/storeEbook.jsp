@@ -33,6 +33,35 @@
         .navbar .right {
             float: right;
         }
+        .navbar a:hover {
+            background-color: #555; /* Change to darker color */
+        }
+        .navbar a:hover::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #fff; /* White color */
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        .navbar a:hover::before {
+            content: "";
+            display: block;
+            width: 0%;
+            height: 2px;
+            background-color: #fff; /* White color */
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            transition: width 0.3s;
+        }
+        .navbar a:hover::before,
+        .navbar a:hover::after {
+            transition: width 0.3s;
+        }
         @media screen and (max-width: 600px) {
             .navbar a, .navbar .right {
                 float: none;
@@ -89,6 +118,11 @@
             color: #333;
             font-size: 24px;
             cursor: pointer;
+            transition: color 0.3s, background-color 0.3s; /* Add transition */
+        }
+        .slider-nav button:hover {
+            color: #fff; /* Change to white color */
+            background-color: #555; /* Change to darker color */
         }
         .search-bar {
             margin: 20px auto;
@@ -137,7 +171,7 @@
         </div>
 
         <h2>Most Popular Books</h2>
-        <p>ost purchased books</p>
+        <p>Most purchased books</p>
         <div class="popular-books-slider">
             <div class="popular-books">
                 <div class="book-card">
@@ -219,3 +253,4 @@
     </script>
 </body>
 </html>
+
