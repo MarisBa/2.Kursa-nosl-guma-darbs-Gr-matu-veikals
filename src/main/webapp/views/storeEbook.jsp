@@ -28,7 +28,7 @@
         }
         .navbar a:hover {
             background-color: #ddd;
-            border-radius: 30px; /* Adjust roundness on hove dfgdfgdfgdf r */
+            border-radius: 30px;
         }
         .navbar .right {
             float: right;
@@ -51,26 +51,35 @@
         }
         .popular-books {
             display: flex;
-            transition: transform 0.5s ease; /* Added transition for smooth sliding */
+            transition: transform 0.5s ease;
         }
         .book-card {
             flex: 0 0 auto;
-            border: 1px solid #ccc;
-            border-radius: 5px;
             margin: 10px;
-            padding: 10px;
-            width: 200px;
+            width: 200px; /* Set a fixed width */
+            height: 420px; /* Set a fixed height */
             text-align: center;
         }
         .book-card img {
             max-width: 100%;
-            height: auto;
-            border-radius: 5px;
+            height: 300px; /* Set a fixed height */
         }
         .book-card h3 {
             margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333; /* Dark grey */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
-        /* Navigation buttons */
+        .book-card p {
+            font-size: 12px;
+            color: #777; /* Light grey */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
         .slider-nav {
             margin-top: 20px;
         }
@@ -81,7 +90,6 @@
             font-size: 24px;
             cursor: pointer;
         }
-        /* Search bar styles */
         .search-bar {
             margin: 20px auto;
             text-align: center;
@@ -113,7 +121,7 @@
         <a href="#home">EBOOKSTORE</a>
         <a href="/Available_books">Available Books</a>
         <a href="#mybooks">My Books</a>
-        <a href="/Register_book" class="right">New book register</a>
+        <a href="/Register_book" class="right">New book registers</a>
     </div>
 
     <div class="main-content">
@@ -129,79 +137,84 @@
         </div>
 
         <h2>Most Popular Books</h2>
+        <p>ost purchased books</p>
         <div class="popular-books-slider">
             <div class="popular-books">
                 <div class="book-card">
                     <img src="https://image.ebooks.com/cover/210912488.jpg?width=166&height=250&quality=85" alt="Book Cover">
-                    <h3>Book Title 1</h3>
-                    <p>Author: Author Name</p>
+                    <p>TONY ROBBINS</p>
+                    <h3>The Holy Grail of Investing</h3>
                 </div>
                 <div class="book-card">
                     <img src="https://image.ebooks.com/cover/210660466.jpg?width=166&height=250&quality=85" alt="Book Cover">
-                    <h3>Book Title 2</h3>
-                    <p>Author: Author Name</p>
+                    <p>RICHARD OSMAN</p>
+                    <h3>The Last DEVIL to Die</h3>
                 </div>
                 <!-- Add more book cards as needed -->
                 <div class="book-card">
                     <img src="https://image.ebooks.com/cover/210877223.jpg?width=166&height=250&quality=85" alt="Book Cover">
-                    <h3>Book Title 3</h3>
-                    <p>Author: Author Name</p>
+                    <p>STEVE BERRY</p>
+                    <h3>The ATLAS MANUEVER</h3>
                 </div>
                 <div class="book-card">
                     <img src="https://assets-prd.ignimgs.com/2023/05/03/heidi-book-1683154826105.jpg?height=220" alt="Book Cover">
-                    <h3>Heidi</h3>
-                    <p>Author: Johanna Spyri</p>
+                    <p>JOHANNA SPYRI</p>
+                    <h3>HEIDI</h3>
                 </div>
                 <div class="book-card">
                     <img src="https://assets-prd.ignimgs.com/2023/05/03/lolita-book-1683156429356.jpeg?height=220" alt="Book Cover">
+                    <p>VLADIMIR NABOKOV</p>
                     <h3>Lolita</h3>
-                    <p>Author: Vladimir Nabokov</p>
                 </div>
                 <div class="book-card">
                     <img src="https://assets-prd.ignimgs.com/2023/05/03/hundred-solitude-harper-perennial-classics-1683156590489.jpeg?height=220" alt="Book Cover">
-                    <h3>One Hundred Years of Solitude</h3>
-                    <p>Author: Gabriel García Márquez</p>
+                    <p>GABRIEL GARCIA </p>
+                    <h3>One hundred years of solitude</h3>
                 </div>
                 <div class="book-card">
                     <img src="https://assets-prd.ignimgs.com/2023/05/03/the-catcher-in-the-rye-1683157092601.jpeg?height=220" alt="Book Cover">
-                    <h3>The Catcher in the Rye</h3>
-                    <p>Author: J.D. Salinger</p>
+                    <p>J.D. SALINGER</p>
+                    <h3>The CATCHER in the RYE</h3>
                 </div>
                 <div class="book-card">
                     <img src="https://assets-prd.ignimgs.com/2023/05/03/hp-deathly-hallows-1683157182524.jpeg?height=220" alt="Book Cover">
+                    <p>J. K. Rowling</p>
                     <h3>Harry Potter and the Deathly Hallows</h3>
-                    <p>Author: J.K. Rowling</p>
                 </div>
                 <div class="book-card">
                     <img src="https://assets-prd.ignimgs.com/2023/05/03/hp-the-half-blood-prince-1683157309141.jpeg?height=220" alt="Book Cover">
-                    <h3>Harry Potter and the Half-Blood Prince</h3>
-                    <p>Author: J.K. Rowling</p>
+                    <p>J. K. Rowling</p>
+                    <h3>Harry potter and the Charmber of Secrets</h3>
                 </div>
                 <!-- Add more book cards as needed -->
             </div>
             <div class="slider-nav">
                 <button id="prevBtn" onclick="moveSlider(-1)">&#10094;</button>
-                <button id="nextBtn" onclick="moveSlider(1)">&#10095;</button><!-- Write your comments here -->
+                <button id="nextBtn" onclick="moveSlider(1)">&#10095;</button>
             </div>
         </div>
     </div>
 
     <script>
-        let slideIndex = 0;
-        const slideWidth = 220; // Width of each book card
-        const slidesToShow = 3; // Number of slides to show at a time
-
-        function moveSlider(n) {
-            slideIndex += n;
-            showBooks();
-        }
-
-        function showBooks() {
-            const books = document.querySelector('.popular-books');
-            const maxTranslate = -(books.offsetWidth - (slidesToShow * slideWidth));
-            slideIndex = Math.min(slidesToShow - 1, Math.max(0, slideIndex)); // Clamp slideIndex
-            const translateValue = -slideIndex * slideWidth;
-            books.style.transform = `translateX(${translateValue}px)`;
+        function moveSlider(direction) {
+            const slider = document.querySelector('.popular-books');
+            const cardWidth = document.querySelector('.book-card').offsetWidth;
+            slider.style.transition = 'transform 0.5s ease';
+            if (direction === -1) {
+                slider.style.transform = `translateX(${cardWidth}px)`;
+                setTimeout(() => {
+                    slider.appendChild(slider.firstElementChild);
+                    slider.style.transition = 'none';
+                    slider.style.transform = 'translateX(0)';
+                }, 500);
+            } else if (direction === 1) {
+                slider.style.transform = `translateX(-${cardWidth}px)`;
+                setTimeout(() => {
+                    slider.prepend(slider.lastElementChild);
+                    slider.style.transition = 'none';
+                    slider.style.transform = 'translateX(0)';
+                }, 500);
+            }
         }
     </script>
 </body>
