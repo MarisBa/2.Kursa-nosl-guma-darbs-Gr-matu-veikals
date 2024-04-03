@@ -62,7 +62,7 @@
             margin-right: 80px;
         }
         .book img {
-            width: 100%;
+            width: 80%;
             height: auto;
         }
         .book-details {
@@ -141,7 +141,7 @@
             </div>
             <!-- Book 2 -->
             <div class="book">
-                <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320428955l/2776527._SX98_.jpg" alt="Book Title">
+                <img src="https://eglobuss.lv/storage/attachments/8uw/foe/65o/8uwfoe65o5retlhcw303yg7hd.jpg" alt="Book Title">
                 <div class="book-details">
                     <h2>Book Title</h2>
                     <p class="book-price">$14.99</p>
@@ -150,7 +150,7 @@
             </div>
             <!-- Book 3 -->
             <div class="book">
-                <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1255573980l/1713426._SX98_.jpg" alt="Book Title">
+                <img src="https://eglobuss.lv/storage/attachments/nar/dch/z71/nardchz71thj8radibztfabf.jpg" alt="Book Title">
                 <div class="book-details">
                     <h2>Book Title</h2>
                     <p class="book-price">$24.99</p>
@@ -159,7 +159,7 @@
             </div>
             <!-- Book 4 -->
             <div class="book">
-                <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1317793965l/11468377._SX98_.jpg" alt="Book Title">
+                <img src="https://eglobuss.lv/storage/attachments/eno/mk1/f9d/enomk1f9doshrhibsh3ta5ycm.jpg" alt="Book Title">
                 <div class="book-details">
                     <h2>Book Title</h2>
                     <p class="book-price">$29.99</p>
@@ -168,7 +168,7 @@
             </div>
             <!-- Book 5 -->
             <div class="book">
-                <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1369453733l/6953508._SX98_.jpg" alt="Book Title">
+                <img src="https://eglobuss.lv/storage/attachments/7yl/5d8/6kt/7yl5d86kt6daqx20bjczzqwx.jpg" alt="Book Title">
                 <div class="book-details">
                     <h2>Book Title</h2>
                     <p class="book-price">$22.99</p>

@@ -74,4 +74,11 @@ public class RegistrationController {
         mv.addObject("registrationResult", registrationResult);
         return mv;
     }
+
+    @GetMapping("/the-holy-grail-of-investing")
+    public ModelAndView registerBookTony(@RequestParam(required = false) String registrationResult) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("the-holy-grail-of-investing");
+        return mv;
+    }
 }
