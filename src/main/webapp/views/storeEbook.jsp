@@ -80,12 +80,12 @@
         }
         .popular-books {
             display: flex;
-            transition: transform 0.5s ease;
+            transition: transform 1s ease; /* Adjust transition duration */
         }
         .book-card {
             flex: 0 0 auto;
             margin: 10px;
-            width: 200px; /* Set a fixed width */
+            width: 250px; /* Increase card width */
             height: 420px; /* Set a fixed height */
             text-align: center;
         }
@@ -148,6 +148,11 @@
         .search-bar button:hover {
             background-color: #555;
         }
+
+        .book-card a {
+            text-decoration: none;
+            color: inherit; /* Optionally, inherit the color from parent */
+        }
     </style>
 </head>
 <body>
@@ -175,50 +180,68 @@
         <div class="popular-books-slider">
             <div class="popular-books">
                 <div class="book-card">
-                    <img src="https://image.ebooks.com/cover/210912488.jpg?width=166&height=250&quality=85" alt="Book Cover">
-                    <p>TONY ROBBINS</p>
-                    <h3>The Holy Grail of Investing</h3>
+                    <a href="/the-holy-grail-of-investing">
+                        <img src="https://image.ebooks.com/cover/210912488.jpg?width=166&height=250&quality=85" alt="Book Cover">
+                        <p>TONY ROBBINS</p>
+                        <h3>The Holy Grail of Investing</h3>
+                    </a>
                 </div>
                 <div class="book-card">
-                    <img src="https://image.ebooks.com/cover/210660466.jpg?width=166&height=250&quality=85" alt="Book Cover">
-                    <p>RICHARD OSMAN</p>
-                    <h3>The Last DEVIL to Die</h3>
+                    <a href="/the-last-devil-to-die">
+                        <img src="https://image.ebooks.com/cover/210660466.jpg?width=166&height=250&quality=85" alt="Book Cover">
+                        <p>RICHARD OSMAN</p>
+                        <h3>The Last DEVIL to Die</h3>
+                    </a>
                 </div>
                 <!-- Add more book cards as needed -->
                 <div class="book-card">
-                    <img src="https://image.ebooks.com/cover/210877223.jpg?width=166&height=250&quality=85" alt="Book Cover">
-                    <p>STEVE BERRY</p>
-                    <h3>The ATLAS MANUEVER</h3>
+                    <a href="/the-atlas-manuever">
+                        <img src="https://image.ebooks.com/cover/210877223.jpg?width=166&height=250&quality=85" alt="Book Cover">
+                        <p>STEVE BERRY</p>
+                        <h3>The ATLAS MANUEVER</h3>
+                    </a>
                 </div>
                 <div class="book-card">
-                    <img src="https://assets-prd.ignimgs.com/2023/05/03/heidi-book-1683154826105.jpg?height=220" alt="Book Cover">
-                    <p>JOHANNA SPYRI</p>
-                    <h3>HEIDI</h3>
+                    <a href="/heidi">
+                        <img src="https://assets-prd.ignimgs.com/2023/05/03/heidi-book-1683154826105.jpg?height=220" alt="Book Cover">
+                        <p>JOHANNA SPYRI</p>
+                        <h3>HEIDI</h3>
+                    </a>
                 </div>
                 <div class="book-card">
-                    <img src="https://assets-prd.ignimgs.com/2023/05/03/lolita-book-1683156429356.jpeg?height=220" alt="Book Cover">
-                    <p>VLADIMIR NABOKOV</p>
-                    <h3>Lolita</h3>
+                    <a href="/lolita">
+                        <img src="https://assets-prd.ignimgs.com/2023/05/03/lolita-book-1683156429356.jpeg?height=220" alt="Book Cover">
+                        <p>VLADIMIR NABOKOV</p>
+                        <h3>Lolita</h3>
+                    </a>
                 </div>
                 <div class="book-card">
-                    <img src="https://assets-prd.ignimgs.com/2023/05/03/hundred-solitude-harper-perennial-classics-1683156590489.jpeg?height=220" alt="Book Cover">
-                    <p>GABRIEL GARCIA </p>
-                    <h3>One hundred years of solitude</h3>
+                    <a href="/one-hundred years of solitude">
+                        <img src="https://assets-prd.ignimgs.com/2023/05/03/hundred-solitude-harper-perennial-classics-1683156590489.jpeg?height=220" alt="Book Cover">
+                        <p>GABRIEL GARCIA </p>
+                        <h3>One hundred years of solitude</h3>
+                    </a>
                 </div>
                 <div class="book-card">
-                    <img src="https://assets-prd.ignimgs.com/2023/05/03/the-catcher-in-the-rye-1683157092601.jpeg?height=220" alt="Book Cover">
-                    <p>J.D. SALINGER</p>
-                    <h3>The CATCHER in the RYE</h3>
+                    <a href="/the-catcher-in-the-rye">
+                        <img src="https://assets-prd.ignimgs.com/2023/05/03/the-catcher-in-the-rye-1683157092601.jpeg?height=220" alt="Book Cover">
+                        <p>J.D. SALINGER</p>
+                        <h3>The CATCHER in the RYE</h3>
+                    </a>
                 </div>
                 <div class="book-card">
-                    <img src="https://assets-prd.ignimgs.com/2023/05/03/hp-deathly-hallows-1683157182524.jpeg?height=220" alt="Book Cover">
-                    <p>J. K. Rowling</p>
-                    <h3>Harry Potter and the Deathly Hallows</h3>
+                    <a href="/harry-petter-and-the-deathly-hallows">
+                        <img src="https://assets-prd.ignimgs.com/2023/05/03/hp-deathly-hallows-1683157182524.jpeg?height=220" alt="Book Cover">
+                        <p>J. K. Rowling</p>
+                        <h3>Harry Potter and the Deathly Hallows</h3>
+                    </a>
                 </div>
                 <div class="book-card">
-                    <img src="https://assets-prd.ignimgs.com/2023/05/03/hp-the-half-blood-prince-1683157309141.jpeg?height=220" alt="Book Cover">
-                    <p>J. K. Rowling</p>
-                    <h3>Harry potter and the Charmber of Secrets</h3>
+                    <a href="/harry-potter-and-the-charmber-of-sercrets">
+                        <img src="https://assets-prd.ignimgs.com/2023/05/03/hp-the-half-blood-prince-1683157309141.jpeg?height=220" alt="Book Cover">
+                        <p>J. K. Rowling</p>
+                        <h3>Harry potter and the Charmber of Secrets</h3>
+                    </a>
                 </div>
                 <!-- Add more book cards as needed -->
             </div>
@@ -251,6 +274,10 @@
             }
         }
     </script>
+    
+    
+    
+    
+    
 </body>
 </html>
-
