@@ -102,7 +102,33 @@
             color: white; /* Change text color on hover */
         }
 
+        .quantity-container {
+            display: flex; /* Make the buttons and input field display in a row */
+            align-items: center; /* Align items vertically in the center */
+            border: 1px solid #ccc; /* Add border */
+            border-radius: 5px; /* Add border radius */
+            padding: 3px; /* Adjust padding */
+            width: 120px; /* Adjust width */
+            margin-left: auto; /* Move the container to the right */
+        }
 
+        .quantity-container button {
+            background-color: transparent; /* Remove default button background */
+            border: none; /* Remove default button border */
+            cursor: pointer; /* Change cursor to pointer */
+            font-size: 20px; /* Adjust font size */
+            padding: 0 5px; /* Adjust padding */
+        }
+
+        .quantity-container button:hover {
+            background-color: #f0f0f0; /* Change background color on hover */
+        }
+
+        .quantity-container input {
+            border: none; /* Remove default input border */
+            width: 40px; /* Adjust input width */
+            text-align: center; /* Center align text */
+        }
 
 
 
@@ -121,14 +147,15 @@
             <p>"Tony Robbins returns with the final book in his financial freedom trilogy by unveiling the power of alternative investments. Robbins, and renowned investor Christopher Zook, take you on a journey to interview a dozen of the worlds most successful investors in private equity, private credit, private real estate, and venture capital. They share their favorite strategies and insights in this practical guidebook.<br><br>
                 For decades, trillions of dollars in smart money has been making outsized returns using private equity, private credit, venture capital and other alternative investments."</p>
                 <div class="button-container">
-                    <button id="decrement">-</button> <!-- Decrement button -->
-                    <input type="number" id="quantity" value="1" min="1" max="999"> <!-- Input field for quantity -->
-                    <button id="increment">+</button> <!-- Increment button -->
+                    <div class="quantity-container">
+                        <button id="decrement">-</button>
+                        <input type="number" id="quantity" value="1" min="1" max="999">
+                        <button id="increment">+</button>
+                    </div>
                     <button>
                         <i class="fa-solid fa-book"></i>
                         <span style="font-weight: lighter;">Add to cart</span>
                     </button>
-                    
                 </div>
         </div>
         <div class="details">
