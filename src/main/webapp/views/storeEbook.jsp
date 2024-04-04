@@ -181,9 +181,9 @@
             <div class="popular-books">
                 <div class="book-card">
                     <a href="/the-holy-grail-of-investing">
-                        <img src="https://image.ebooks.com/cover/210912488.jpg?width=166&height=250&quality=85" alt="Book Cover">
+                        <img src="https://eglobuss.lv/storage/attachments/2y0/7ce/4bc/2y07ce4bcln23sbf34hfqpc73-350x500-resize-quality(85).webp" alt="Book Cover">
                         <p>TONY ROBBINS</p>
-                        <h3>The Holy Grail of Investing</h3>
+                        <h3>Life Force : How New Breakthroughs in Precision Medicine Can Transform the Quality of Your Life</h3>
                     </a>
                 </div>
                 <div class="book-card">
