@@ -46,7 +46,6 @@
         }
         .details p {
             font-size: 18px;
-            line-height: 1.5;
             padding-left: 90px;
             margin: 0; /* Remove margin */
         }
@@ -66,8 +65,9 @@
             margin-top: 0;
             margin: 0; /* Remove margin */
             display: block; /* Change display to block */
-
+            font-weight: lighter;
             padding: 5px 10px; /* Add padding */
+            
         }
 
         .details h6 span {
@@ -83,53 +83,92 @@
             margin-right: 100px; /* Adjust margin-right to move the container to the left */
         }
         .button-container {
-            text-align: center; /* Center the button horizontally */
-            margin-top: 20px; /* Add some space between the text and the button */
-        }
-
-        .button-container button {
-            font-size: 18px; /* Increase the font size */
-            font-weight: bold; /* Set font weight to bold */
-            padding: 10px 20px; /* Increase the padding */
-            background-color: white; /* Default background color */
-            color: darkblue; /* Default text color */
-            border: 1px solid darkblue; /* Default border */
-            transition: background-color 0.3s, color 0.3s; /* Smooth transition for background color and text color */
-        }
-
-        .button-container button:hover {
-            background-color: darkblue; /* Change background color on hover */
-            color: white; /* Change text color on hover */
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center align items horizontally */
+            margin-top: 20px;
+            margin-left: 50px;
         }
 
         .quantity-container {
-            display: flex; /* Make the buttons and input field display in a row */
-            align-items: center; /* Align items vertically in the center */
-            border: 1px solid #ccc; /* Add border */
-            border-radius: 5px; /* Add border radius */
-            padding: 3px; /* Adjust padding */
-            width: 120px; /* Adjust width */
-            margin-left: auto; /* Move the container to the right */
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 50px;
+            width: 120px;
         }
 
         .quantity-container button {
-            background-color: transparent; /* Remove default button background */
-            border: none; /* Remove default button border */
-            cursor: pointer; /* Change cursor to pointer */
-            font-size: 20px; /* Adjust font size */
-            padding: 0 5px; /* Adjust padding */
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
         }
 
         .quantity-container button:hover {
-            background-color: #f0f0f0; /* Change background color on hover */
+            background-color: #f0f0f0;
         }
 
         .quantity-container input {
-            border: none; /* Remove default input border */
-            width: 40px; /* Adjust input width */
-            text-align: center; /* Center align text */
+            border: none;
+            width: 40px;
+            text-align: center;
         }
 
+        .button-container {
+            text-align: center; /* Center the button horizontally */
+            margin-top: 20px;
+            margin-left: 50px; /* Add some space between the text and the button */
+            padding: 10px 20px; /* Increase padding */
+        }
+
+        .button-container button {
+            font-size: 25px; /* Increase the font size */
+            font-weight: bold; /* Set font weight to bold */
+            background-color: white; /* Default background color */
+            border: 1px solid grey; /* Default border */
+            border-radius: 5px; /* Make the corners more rounded */
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for background color, text color, and border color */
+            width: 200px; /* Increase width */
+            height: 50px; /* Increase height */
+        }
+
+        .button-container button:hover {
+            background-color: lightgrey; /* Change background color on hover */
+            color: white; /* Change text color on hover */
+            border-color: white; /* Change border color on hover */
+        }
+
+        .details .bordered-container2 {
+            display: inline-block; /* Change display to inline-block */
+            border: 1px solid #fff; /* White border */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Grey shadow */
+            margin-right: 100px; /* Adjust margin-right to move the container to the left */
+            width: 274px; /* Set width to 150 pixels */
+            height: 80px; /* Set height to 100 pixels */
+            margin-top: 15px;
+            padding: 5px 10px; /* Add padding */
+        }
+
+        .details .bordered-container3 {
+            display: inline-block; /* Change display to inline-block */
+            border: 1px solid #fff; /* White border */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Grey shadow */
+            margin-right: 100px; /* Adjust margin-right to move the container to the left */
+            width: 274px; /* Set width to 150 pixels */
+            height: 80px; /* Set height to 100 pixels */
+            margin-top: 15px;
+            padding: 5px 10px; /* Add padding */
+        }
+        .fa-solid.fa-percent {
+        color: white; /* Sets the icon color to white */
+        font-size: 24px; /* Sets the font size to 24 pixels */
+        border: 2px solid grey; /* Adds a 2px solid red border around the icon */
+        border-radius: 50%; /* Makes the border circular */
+        background-color: grey; /* Fills the icon with red color */
+        padding: 2px; /* Adds padding to the icon */
+}
 
 
 
@@ -146,14 +185,16 @@
             <h3 style="color: red;">$16.77</h3> <!-- Adjusted price text color to red -->
             <p>"Tony Robbins returns with the final book in his financial freedom trilogy by unveiling the power of alternative investments. Robbins, and renowned investor Christopher Zook, take you on a journey to interview a dozen of the worlds most successful investors in private equity, private credit, private real estate, and venture capital. They share their favorite strategies and insights in this practical guidebook.<br><br>
                 For decades, trillions of dollars in smart money has been making outsized returns using private equity, private credit, venture capital and other alternative investments."</p>
+
+            
                 <div class="button-container">
                     <div class="quantity-container">
-                        <button id="decrement">-</button>
+                        <button id="decrement" style="border-color: white;">-</button>
                         <input type="number" id="quantity" value="1" min="1" max="999">
-                        <button id="increment">+</button>
+                        <button id="increment" style="border-color: white;">+</button>
                     </div>
                     <button>
-                        <i class="fa-solid fa-book"></i>
+                        <i class="fa-regular fa-bookmark"></i>
                         <span style="font-weight: lighter;">Add to cart</span>
                     </button>
                 </div>
@@ -167,6 +208,18 @@
                 <h6><span style="color: #B8B6B5 ; font-weight: lighter;">Cover type:</span><span> Hard</span></h6>
                 <h6><span style="color: #B8B6B5 ; font-weight: lighter;">Publication date:</span><span> February 13,2024</span></h6>
                 <h6><span style="color: #B8B6B5 ; font-weight: lighter;">Print length:</span><span> 322</span></h6>
+            </div>
+            <div class="bordered-container2">
+                <h6 style="font-weight: bold;">Item is available in stock</h6>
+                <h6 style="color: #B8B6B5;">The product is in our warehouse and available for your order.</h6>
+            </div>
+            <div class="bordered-container3">
+                <h6><i class="fa-solid fa-percent"></i> Register and get 10% discount!</h6>
+                <h6>Discount for full-price items. Discounts do not sum up!</h6>
+                <h6>Order processing takes place on business days from 10:00 to 18:00.</h6>
+                <h6>Free delivery to OMNIVA parcel lockers in Latvia for orders from €35.00</h6>
+                <h6></h6>
+
             </div>
         </div>
     </div>
