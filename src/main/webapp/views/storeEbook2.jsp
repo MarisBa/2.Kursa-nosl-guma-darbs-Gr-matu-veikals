@@ -11,64 +11,6 @@
             margin: 0;
             padding: 0;
         }
-        .navbar {
-            overflow: hidden;
-            background-color: #333;
-            padding: 10px 20px;
-        }
-        .navbar a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-            border-radius: 20px;
-            transition: background-color 0.3s, border-radius 0.3s;
-        }
-        .navbar a:hover {
-            background-color: #ddd;
-            border-radius: 30px;
-        }
-        .navbar .right {
-            float: right;
-        }
-        .navbar a:hover {
-            background-color: #555; /* Change to darker color */
-        }
-        .navbar a:hover::after {
-            content: "";
-            display: block;
-            width: 100%;
-            height: 2px;
-            background-color: #fff; /* White color */
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            transition: width 0.3s;
-        }
-        .navbar a:hover::before {
-            content: "";
-            display: block;
-            width: 0%;
-            height: 2px;
-            background-color: #fff; /* White color */
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            transition: width 0.3s;
-        }
-        .navbar a:hover::before,
-        .navbar a:hover::after {
-            transition: width 0.3s;
-        }
-        @media screen and (max-width: 600px) {
-            .navbar a, .navbar .right {
-                float: none;
-                display: block;
-                text-align: center;
-            }
-        }
         .main-content {
             padding: 20px;
             text-align: center;
@@ -125,7 +67,8 @@
             background-color: #555; /* Change to darker color */
         }
         .search-bar {
-            margin: 20px auto;
+            display: inline-block; /* Display the search bar as inline-block */
+            margin: 20px auto; /* Center the search bar horizontally and add top margin */
             text-align: center;
         }
         .search-bar input[type="text"] {
@@ -153,19 +96,21 @@
             text-decoration: none;
             color: inherit; /* Optionally, inherit the color from parent */
         }
+        .logo-container {
+            display: inline-block; /* Display the logo container as inline-block */
+            margin-right: 20px; /* Add margin to separate the logo and search bar */
+        }
+        .logo {
+            width: 10%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <a href="#home">EBOOKSTORE</a>
-        <a href="/Available_books">Available Books</a>
-        <a href="#mybooks">My Books</a>
-        <a href="/Register_book" class="right">New book registers</a>
-    </div>
-
+    
+        <img class="logo" src="https://static.vecteezy.com/system/resources/previews/005/335/231/original/logo-for-bookstore-in-white-background-free-vector.jpg" alt="Logo">
+    
     <div class="main-content">
-        <h1>Welcome to the Book Store</h1>
-        <p>Explore our collection of books and find your next great read!</p>
 
         <!-- Search bar -->
         <div class="search-bar">
@@ -175,9 +120,6 @@
                 <button type="submit">Search</button>
             </form>
         </div>
-
-        <h2>Most Popular Books</h2>
-        <p>Most purchased books</p>
         <div class="popular-books-slider">
             <div class="popular-books">
                 <div class="book-card">

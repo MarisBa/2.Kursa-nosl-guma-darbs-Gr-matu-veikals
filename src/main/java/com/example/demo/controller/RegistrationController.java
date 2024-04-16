@@ -6,9 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import java.util.List;
+
 
 import com.example.demo.model.UserRegistration;
 import com.example.demo.repository.UserRepo;
+
+
+
+
 
 @RestController
 public class RegistrationController {
@@ -81,4 +87,46 @@ public class RegistrationController {
         mv.setViewName("the-holy-grail-of-investing");
         return mv;
     }
+    @GetMapping("/the-last-devil-to-die")
+    public ModelAndView registerBookDevil(@RequestParam(required = false) String registrationResult) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("the-last-devil-to-die");
+        return mv;
+    }
+
+    @GetMapping("/the-atlas-manuever")
+    public ModelAndView registerBookAtlasManuever(@RequestParam(required = false) String registrationResult) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("the-atlas-manuever");
+        return mv;
+    }
+
+    @GetMapping("/heidi")
+    public ModelAndView registerBookHeidi(@RequestParam(required = false) String registrationResult) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("heidi");
+        return mv;
+    }
+    
+    @GetMapping("/james")
+    public ModelAndView registerBookJames(@RequestParam(required = false) String registrationResult) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("james");
+        return mv;
+    }
+
+    @GetMapping("/one-hundred-years-of-solitude")
+    public ModelAndView registerBookOneHoundred(@RequestParam(required = false) String registrationResult) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("one-hundred-years-of-solitude");
+        return mv;
+    }
+
+    @GetMapping("/storeEbook2")
+    public ModelAndView getbookStore2() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("storeEbook2"); // This assumes "storeEbook.jsp" exists in your configured view resolver
+        return mv;
+    }
+
 }

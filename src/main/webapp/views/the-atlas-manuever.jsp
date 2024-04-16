@@ -81,6 +81,7 @@
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Grey shadow */
             padding: 10px; /* Reduce padding */
             margin-right: 100px; /* Adjust margin-right to move the container to the left */
+
         }
         .button-container {
             display: flex;
@@ -179,13 +180,12 @@
 <body>
     <div class="container">
         <div class="image">
-            <img src="https://eglobuss.lv/storage/attachments/2y0/7ce/4bc/2y07ce4bcln23sbf34hfqpc73-350x500-resize-quality(85).webp" alt="Book Cover">
+            <img src="https://steveberry.org/wp-content/uploads/2023/04/Berry_AtlasManeuver_1-680x1024.jpg" alt="Book Cover">
         </div>
         <div class="details">
-            <h2>The Holy Grail of Investing</h2>
-            <h3 style="color: red;">$16.77</h3> <!-- Adjusted price text color to red -->
-            <p>"Tony Robbins returns with the final book in his financial freedom trilogy by unveiling the power of alternative investments. Robbins, and renowned investor Christopher Zook, take you on a journey to interview a dozen of the worlds most successful investors in private equity, private credit, private real estate, and venture capital. They share their favorite strategies and insights in this practical guidebook.<br><br>
-                For decades, trillions of dollars in smart money has been making outsized returns using private equity, private credit, venture capital and other alternative investments."</p>
+            <h2>The Atlas Maneuver</h2>
+            <h3 style="color: red;">$14.99</h3> <!-- Adjusted price text color to red -->
+            <p>"From celebrated  New York Times  bestselling author Steve Berry comes the latest Cotton Malone adventure, in which Cotton unravels a mystery from World War II involving a legendary lost treasure, worth billions, known as Yamashita’s Gold. 1945 . In the waning months of World War II, Japan hid vast quantities of gold and other stolen valuables in boobytrapped underground caches all across the Philippines. By 1947 some of that loot was recovered, not by treasure hunters, but by the United States government, which told no one about the find. Instead, those assets were stamped classified, shipped to Europe, and secretly assimilated into something called the Black Eagle Trust."</p>
 
             
                 <div class="button-container">
@@ -202,13 +202,13 @@
         </div>
         <div class="details">
             <div class="bordered-container">
-                <h6><span style="color: #B8B6B5 ; font-weight: lighter;">Author:</span><span> Tony Robbins</span></h6>
-                <h6><span style="color: #B8B6B5 ; font-weight: lighter;">Manufacturer:</span><span> Simon & Schuster Audio</span></h6>
+                <h6><span style="color: #B8B6B5 ; font-weight: lighter;">Author:</span><span> Steve Berry</span></h6>
+                <h6><span style="color: #B8B6B5 ; font-weight: lighter;">Manufacturer:</span><span> Grand Central Publishing</span></h6>
                 <h6><span style="color: #B8B6B5 ; font-weight: lighter;">Lanuage: </span><span>English</span></h6>
-                <h6><span style="color: #B8B6B5 ; font-weight: lighter;"> ISBN code:</span><span> B0CC9ZYFQP</span></h6>
+                <h6><span style="color: #B8B6B5 ; font-weight: lighter;"> ISBN code:</span><span> 9781538721032 </span></h6>
                 <h6><span style="color: #B8B6B5 ; font-weight: lighter;">Cover type:</span><span> Hard</span></h6>
-                <h6><span style="color: #B8B6B5 ; font-weight: lighter;">Publication date:</span><span> February 13,2024</span></h6>
-                <h6><span style="color: #B8B6B5 ; font-weight: lighter;">Print length:</span><span> 322</span></h6>
+                <h6><span style="color: #B8B6B5 ; font-weight: lighter;">Publication date:</span><span> February 20, 2024</span></h6>
+                <h6><span style="color: #B8B6B5 ; font-weight: lighter;">Print length:</span><span> 405</span></h6>
             </div>
             <div class="bordered-container2">
                 <h6 style="font-weight: bold;">Item is available in stock</h6>
