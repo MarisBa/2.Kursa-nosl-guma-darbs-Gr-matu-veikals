@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -30,6 +32,9 @@
             width: 250px; /* Increase card width */
             height: 420px; /* Set a fixed height */
             text-align: center;
+        }
+        .book-card a {
+            text-decoration: none; /* Remove underline from anchor tags */
         }
         .book-card img {
             max-width: 100%;
@@ -66,60 +71,93 @@
             color: #fff; /* Change to white color */
             background-color: #555; /* Change to darker color */
         }
-        .search-bar {
-            display: inline-block; /* Display the search bar as inline-block */
-            margin: 20px auto; /* Center the search bar horizontally and add top margin */
-            text-align: center;
+        .header-container {
+            display: flex;
+            align-items: center; /* Align items vertically */
+            justify-content: center; /* Center items horizontally */
+            padding: 20px;
+            background-color: white; /* Add background color */
         }
+    
+        .logo {
+            width: 20%;
+            height: auto;
+            margin-right: 200px;
+        }
+    
+         .search-bar {
+            display: flex;
+            align-items: center;
+        }
+    
         .search-bar input[type="text"] {
             padding: 10px;
-            width: 60%;
-            max-width: 400px;
+            width: calc(100% - 70px); /* Adjusted width to make room for the buttons */
+            max-width: 600px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
         }
+    
         .search-bar button {
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
+            padding: 10px;
+            background-color: transparent;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
+    
         .search-bar button:hover {
-            background-color: #555;
+            background-color: #f0f0f0; /* Change to desired hover color */
         }
-
-        .book-card a {
-            text-decoration: none;
-            color: inherit; /* Optionally, inherit the color from parent */
+    
+        .search-icon-button,
+        .cart-icon-button {
+            color: black;
         }
-        .logo-container {
-            display: inline-block; /* Display the logo container as inline-block */
-            margin-right: 20px; /* Add margin to separate the logo and search bar */
+    
+        .search-icon-button i,
+        .cart-icon-button i {
+            font-size: 1.5em; /* Adjust icon size */
         }
-        .logo {
-            width: 10%;
-            height: auto;
+    
+        .user-icon-button {
+            padding: 10px; /* Adjust padding as needed */
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 12px;
+        }
+    
+        .user-icon-button:hover {
+            background-color: #f0f0f0; /* Change to desired hover color */
+        }
+    
+        .user-icon-button i {
+            color: black;
+            font-size: 1.5em; /* Adjust icon size */
         }
     </style>
+    
+    
+
 </head>
 <body>
     
-        <img class="logo" src="https://static.vecteezy.com/system/resources/previews/005/335/231/original/logo-for-bookstore-in-white-background-free-vector.jpg" alt="Logo">
-    
-    <div class="main-content">
-
-        <!-- Search bar -->
+    <div class="header-container">
+        <img class="logo" src="https://cdn.shopify.com/s/files/1/0277/3830/8642/files/labrsbkstorelogo.jpg?height=628&pad_color=ffffff&v=1614777541&width=1200" alt="Logo">
         <div class="search-bar">
-            <!-- Change form action to point to servlet or server-side script -->
             <form action="/SearchServlet" method="get">
                 <input type="text" name="query" placeholder="Search for books...">
-                <button type="submit">Search</button>
+                <button type="submit" class="search-icon-button"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
+            <button type="submit" class="cart-icon-button"><i class="fa-solid fa-cart-shopping"></i></button>
+            <button type="submit" class="user-icon-button"><i class="fa-regular fa-user"></i> Log In</button>
         </div>
+    </div>
+    
+    
         <div class="popular-books-slider">
             <div class="popular-books">
                 <div class="book-card">
