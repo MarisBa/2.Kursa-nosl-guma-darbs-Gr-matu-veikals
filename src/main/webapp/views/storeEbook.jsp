@@ -211,7 +211,7 @@
                 </div>
                 <div class="book-card">
                     <a href="/james">
-                        <img src="https://eglobuss.lv/storage/attachments/ck3/elq/oo1/ck3elqoo192xu490mwl8rk241.jpg" alt="Book Cover">
+                        <img src="https://m.media-amazon.com/images/I/81etScjkDWL._AC_UF1000,1000_QL80_.jpg" alt="Book Cover">
                         <p>Percival Everett</p>
                         <h3>James : The Powerful Reimagining of The Adventures of Huckleberry Finn</h3>
                     </a>

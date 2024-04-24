@@ -181,7 +181,7 @@
 <body>
     <div class="container">
         <div class="image">
-            <img src="https://eglobuss.lv/storage/attachments/ck3/elq/oo1/ck3elqoo192xu490mwl8rk241.jpg" alt="Book Cover">
+            <img src="https://m.media-amazon.com/images/I/81etScjkDWL._AC_UF1000,1000_QL80_.jpg" alt="Book Cover">
         </div>
         <div class="details">
             <h2>James : The Powerful Reimagining of The Adventures of Huckleberry Finn</h2>

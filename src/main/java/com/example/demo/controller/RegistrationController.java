@@ -129,4 +129,12 @@ public class RegistrationController {
         return mv;
     }
 
+    @GetMapping("/cart2")
+    public ModelAndView getbookcart() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("cart2"); // This assumes "storeEbook.jsp" exists in your configured view resolver
+        return mv;
+    }
+
 }
+ 
