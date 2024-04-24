@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +31,9 @@
             width: 250px; /* Increase card width */
             height: 420px; /* Set a fixed height */
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .book-card a {
             text-decoration: none; /* Remove underline from anchor tags */
@@ -58,6 +60,7 @@
         }
         .slider-nav {
             margin-top: 20px;
+            text-align: center;
         }
         .slider-nav button {
             background: none;
@@ -139,29 +142,52 @@
             font-size: 1.5em; /* Adjust icon size */
         }
 
-    /* Existing styles... */
+        /* Additional styles */
+        .add-to-cart-button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            align-self: center; /* Center the button horizontally */
+        }
 
-    .book-card {
-        flex: 0 0 auto;
-        margin: 10px;
-        width: 250px; /* Increase card width */
-        height: 420px; /* Set a fixed height */
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
 
-    .add-to-cart-button {
-        padding: 8px 16px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        align-self: center; /* Center the button horizontally */
-    }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 600px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
     
 </head>
@@ -174,10 +200,9 @@
                 <input type="text" name="query" placeholder="Search for books...">
                 <button type="submit" class="search-icon-button"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
-            <a href="/cart2" class="cart-icon-button">
+            <a href="#" class="cart-icon-button">
                 <button type="button"><i class="fa-solid fa-cart-shopping"></i></button>
             </a>
-            
             <button type="submit" class="user-icon-button"><i class="fa-regular fa-user"></i> Log In</button>
         </div>
     </div>
@@ -201,7 +226,6 @@
                     <button class="add-to-cart-button">Add to Cart</button>
                 </a>
             </div>
-            <!-- Add more book cards as needed -->
             <div class="book-card">
                 <a href="/the-atlas-manuever">
                     <img src="https://image.ebooks.com/cover/210877223.jpg?width=166&height=250&quality=85" alt="Book Cover">
@@ -265,40 +289,117 @@
             <button id="nextBtn" onclick="moveSlider(1)">&#10095;</button>
         </div>
     </div>
+
+    <!-- Cart Modal -->
+<div id="cartModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Your Cart</h2>
+        <ul id="cartItems"></ul>
+        <div id="cartControls">
+            <button id="decrementBtn">-</button>
+            <span id="quantity">1</span>
+            <button id="incrementBtn">+</button>
+            <button id="checkoutBtn">Checkout</button>
+        </div>
+    </div>
 </div>
 
+
 <script>
-    function moveSlider(direction) {
-        const slider = document.querySelector('.popular-books');
-        const cardWidth = document.querySelector('.book-card').offsetWidth;
-        slider.style.transition = 'transform 0.5s ease';
-        if (direction === -1) {
-            slider.style.transform = `translateX(${cardWidth}px)`;
-            setTimeout(() => {
-                slider.appendChild(slider.firstElementChild);
-                slider.style.transition = 'none';
-                slider.style.transform = 'translateX(0)';
-            }, 500);
-        } else if (direction === 1) {
-            slider.style.transform = `translateX(-${cardWidth}px)`;
-            setTimeout(() => {
-                slider.prepend(slider.lastElementChild);
-                slider.style.transition = 'none';
-                slider.style.transform = 'translateX(0)';
-            }, 500);
-        }
+    // Cart object to store items
+    const cart = [];
+
+    // Function to add item to the cart
+    function addToCart(bookTitle) {
+        cart.push(bookTitle);
+        updateCartUI();
     }
 
+    // Function to update the cart UI
+    function updateCartUI() {
+        const cartItemsElement = document.getElementById("cartItems");
+        cartItemsElement.innerHTML = "";
+        cart.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            cartItemsElement.appendChild(li);
+        });
+    }
+
+    // Event listener for Add to Cart buttons
     document.addEventListener("DOMContentLoaded", function () {
         const addToCartButtons = document.querySelectorAll(".add-to-cart-button");
         addToCartButtons.forEach(button => {
             button.addEventListener("click", function (event) {
                 event.preventDefault(); // Prevent anchor tag's default behavior
-                // Add your logic to handle adding the book to the cart here
+                const bookTitle = this.parentElement.querySelector("h3").textContent;
+                addToCart(bookTitle); // Add the book to cart
                 alert("Added to cart!"); // Placeholder for demonstration
             });
         });
+
+        // Event listener for opening and closing the cart modal
+        const cartModal = document.getElementById("cartModal");
+        const cartButton = document.querySelector(".cart-icon-button button");
+        const closeModal = cartModal.querySelector(".close");
+        cartButton.onclick = function() {
+            cartModal.style.display = "block";
+        }
+        closeModal.onclick = function() {
+            cartModal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == cartModal) {
+                cartModal.style.display = "none";
+            }
+        }
     });
+
+    // Function to update quantity
+function updateQuantity(value) {
+    const quantityElement = document.getElementById("quantity");
+    const currentQuantity = parseInt(quantityElement.textContent);
+    const newQuantity = currentQuantity + value;
+    if (newQuantity >= 1) {
+        quantityElement.textContent = newQuantity;
+    }
+}
+
+// Event listener for increment and decrement buttons
+const decrementBtn = document.getElementById("decrementBtn");
+const incrementBtn = document.getElementById("incrementBtn");
+const checkoutBtn = document.getElementById("checkoutBtn");
+
+decrementBtn.addEventListener("click", function () {
+    updateQuantity(-1);
+});
+
+incrementBtn.addEventListener("click", function () {
+    updateQuantity(1);
+});
+
+// Event listener for checkout butto
+function moveSlider(direction) {
+            const slider = document.querySelector('.popular-books');
+            const cardWidth = document.querySelector('.book-card').offsetWidth;
+            slider.style.transition = 'transform 0.5s ease';
+            if (direction === -1) {
+                slider.style.transform = `translateX(${cardWidth}px)`;
+                setTimeout(() => {
+                    slider.appendChild(slider.firstElementChild);
+                    slider.style.transition = 'none';
+                    slider.style.transform = 'translateX(0)';
+                }, 500);
+            } else if (direction === 1) {
+                slider.style.transform = `translateX(-${cardWidth}px)`;
+                setTimeout(() => {
+                    slider.prepend(slider.lastElementChild);
+                    slider.style.transition = 'none';
+                    slider.style.transform = 'translateX(0)';
+                }, 500);
+            }
+        }
 </script>
 </body>
 </html>

@@ -25,7 +25,7 @@ public class AddToCartServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        // Redirect back to the main page or a confirmation page
-        response.sendRedirect("/storeEbook"); // Redirect to the main page
+        // Respond with success
+        response.setStatus(HttpServletResponse.SC_OK);
     }
 }
