@@ -154,40 +154,109 @@
             align-self: center; /* Center the button horizontally */
         }
 
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
+#cartModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            max-width: 600px;
-        }
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* Centered */
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%; /* Adjust width */
+    max-width: 800px; /* Max width */
+    height: 80%; /* Adjust height */
+    max-height: 600px; /* Max height */
+    overflow-y: auto; /* Add vertical scroll if needed */
+}
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+.modal-content h2 {
+    margin-top: 0;
+}
 
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#cartControls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#decrementBtn, #incrementBtn {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 5px;
+}
+
+#checkoutBtn {
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+#decrementBtn:hover, #incrementBtn:hover, #checkoutBtn:hover {
+    background-color: #0056b3;
+}
+
+.modal-content {
+/* Existing styles */
+text-align: center; /* Center the content */
+}
+
+.modal-content ul {
+padding: 0;
+list-style-type: none;
+}
+
+.modal-content ul li {
+display: flex;
+align-items: center; /* Align items vertically */
+justify-content: space-between; /* Space between title and button */
+margin-bottom: 10px;
+}
+
+.modal-content ul li button {
+padding: 5px 10px;
+background-color: #dc3545; /* Red color for delete button */
+color: #fff;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.modal-content ul li button:hover {
+background-color: #c82333; /* Darker red on hover */
+}
     </style>
     
 </head>
@@ -290,7 +359,11 @@
         </div>
     </div>
 
-    <!-- Cart Modal -->
+<!-- Cart Modal -->
+
+<!-- Your existing HTML -->
+
+<!-- Cart Modal -->
 <div id="cartModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
@@ -305,7 +378,6 @@
     </div>
 </div>
 
-
 <script>
     // Cart object to store items
     const cart = [];
@@ -316,13 +388,25 @@
         updateCartUI();
     }
 
+    // Function to remove item from the cart
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+    }
+
     // Function to update the cart UI
     function updateCartUI() {
         const cartItemsElement = document.getElementById("cartItems");
         cartItemsElement.innerHTML = "";
-        cart.forEach(item => {
+        cart.forEach((item, index) => {
             const li = document.createElement("li");
             li.textContent = item;
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.addEventListener("click", function() {
+                removeFromCart(index);
+            });
+            li.appendChild(deleteButton);
             cartItemsElement.appendChild(li);
         });
     }
@@ -357,49 +441,68 @@
     });
 
     // Function to update quantity
-function updateQuantity(value) {
-    const quantityElement = document.getElementById("quantity");
-    const currentQuantity = parseInt(quantityElement.textContent);
-    const newQuantity = currentQuantity + value;
-    if (newQuantity >= 1) {
-        quantityElement.textContent = newQuantity;
+    function updateQuantity(value) {
+        const quantityElement = document.getElementById("quantity");
+        const currentQuantity = parseInt(quantityElement.textContent);
+        const newQuantity = currentQuantity + value;
+        if (newQuantity >= 1) {
+            quantityElement.textContent = newQuantity;
+        }
+    }
+
+    // Event listener for increment and decrement buttons
+    const decrementBtn = document.getElementById("decrementBtn");
+    const incrementBtn = document.getElementById("incrementBtn");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+
+    decrementBtn.addEventListener("click", function () {
+        updateQuantity(-1);
+    });
+
+    incrementBtn.addEventListener("click", function () {
+        updateQuantity(1);
+    });
+
+    // Event listener for checkout button
+    checkoutBtn.addEventListener("click", function () {
+        // Perform checkout process here
+        alert("Checkout functionality is not implemented yet."); // Placeholder for demonstration
+    });
+
+    // Function to move slider
+    function moveSlider(direction) {
+        const slider = document.querySelector('.popular-books');
+        const cardWidth = document.querySelector('.book-card').offsetWidth;
+        slider.style.transition = 'transform 0.5s ease';
+        if (direction === -1) {
+            slider.style.transform = `translateX(${cardWidth}px)`;
+            setTimeout(() => {
+                slider.appendChild(slider.firstElementChild);
+                slider.style.transition = 'none';
+                slider.style.transform = 'translateX(0)';
+            }, 500);
+        } else if (direction === 1) {
+            slider.style.transform = `translateX(-${cardWidth}px)`;
+            setTimeout(() => {
+                slider.prepend(slider.lastElementChild);
+                slider.style.transition = 'none';
+                slider.style.transform = 'translateX(0)';
+            }, 500);
+        }
+    }
+
+
+    // Function to add item to the cart
+function addToCart(bookTitle) {
+    // Check if the book is already in the cart
+    if (!cart.includes(bookTitle)) {
+        cart.push(bookTitle);
+        updateCartUI();
+    } else {
+        alert("This book is already added to the cart.");
     }
 }
 
-// Event listener for increment and decrement buttons
-const decrementBtn = document.getElementById("decrementBtn");
-const incrementBtn = document.getElementById("incrementBtn");
-const checkoutBtn = document.getElementById("checkoutBtn");
-
-decrementBtn.addEventListener("click", function () {
-    updateQuantity(-1);
-});
-
-incrementBtn.addEventListener("click", function () {
-    updateQuantity(1);
-});
-
-// Event listener for checkout butto
-function moveSlider(direction) {
-            const slider = document.querySelector('.popular-books');
-            const cardWidth = document.querySelector('.book-card').offsetWidth;
-            slider.style.transition = 'transform 0.5s ease';
-            if (direction === -1) {
-                slider.style.transform = `translateX(${cardWidth}px)`;
-                setTimeout(() => {
-                    slider.appendChild(slider.firstElementChild);
-                    slider.style.transition = 'none';
-                    slider.style.transform = 'translateX(0)';
-                }, 500);
-            } else if (direction === 1) {
-                slider.style.transform = `translateX(-${cardWidth}px)`;
-                setTimeout(() => {
-                    slider.prepend(slider.lastElementChild);
-                    slider.style.transition = 'none';
-                    slider.style.transform = 'translateX(0)';
-                }, 500);
-            }
-        }
 </script>
 </body>
 </html>

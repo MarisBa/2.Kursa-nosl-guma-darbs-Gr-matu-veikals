@@ -49,7 +49,7 @@ public class RegistrationController {
         if(user != null) {
             String msg = "Login Successful";  
             mv.addObject("message", msg);
-            mv.setViewName("storeEbook"); // Redirect to storeEbook upon successful login
+            mv.setViewName("storeEbook2"); // Redirect to storeEbook upon successful login
         } else {
             String msg = "Sorry, you entered an incorrect email or password";  
             mv.addObject("message", msg);  

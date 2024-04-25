@@ -172,10 +172,6 @@
             background-color: grey; /* Fills the icon with red color */
             padding: 2px; /* Adds padding to the icon */
     }
-
-
-
-
     </style>
 </head>
 <body>
@@ -197,11 +193,13 @@
                         <input type="number" id="quantity" value="1" min="1" max="999">
                         <button id="increment" style="border-color: white;">+</button>
                     </div>
-                    <button>
+                    <button id="addToCartBtn"> <!-- Changed from <a> to <button> -->
                         <i class="fa-regular fa-bookmark"></i>
                         <span style="font-weight: lighter;">Add to cart</span>
                     </button>
+                    
                 </div>
+                
         </div>
         <div class="details">
             <div class="bordered-container">
@@ -257,5 +255,10 @@
             quantityInput.value = currentValue + 1;
         }
     }
+
+// Define cartItems array
+const cartItems = [];
+
+
 </script>
 </html>
