@@ -35,6 +35,9 @@ public class AdminController {
         Integer pageLength = Integer.valueOf(allParams.get("pageLength"));
         String language = allParams.get("language");
         String manufacturer = allParams.get("manufacturer");
+        String isbn = allParams.get("isbn"); // New property
+        String publicationDate = allParams.get("publicationDate"); // New property
+        String coverType = allParams.get("coverType"); // New property
 
         // Create a new Book object
         Book book = new Book();
@@ -46,6 +49,9 @@ public class AdminController {
         book.setPageLength(pageLength);
         book.setLanguage(language);
         book.setManufacturer(manufacturer);
+        book.setIsbn(isbn); // Set ISBN code
+        book.setPublicationDate(publicationDate); // Set publication date
+        book.setCoverType(coverType); // Set cover type
 
         // Save the book using BookRepository
         Book savedBook = bookRepository.save(book);
@@ -74,9 +80,10 @@ public class AdminController {
         String csvFile = "/workspaces/ProjectRepoNew/src/main/resources/cart.csv";
         try (FileWriter writer = new FileWriter(csvFile, true)) {
             // Append the book information to the CSV file
-            writer.append(String.format("%s,%s,%.2f,%s,%s,%d,%s,%s%n",
-                    book.getTitle(), book.getBookImageUrl(), book.getPrice(), book.getAuthor(),
-                    book.getAbout(), book.getPageLength(), book.getLanguage(), book.getManufacturer()));
+            writer.append(String.format("%d,%s,%s,%.2f,%s,%s,%d,%s,%s,%s,%s,%s%n",
+                    book.getId(), book.getTitle(), book.getBookImageUrl(), book.getPrice(), book.getAuthor(),
+                    book.getAbout(), book.getPageLength(), book.getLanguage(), book.getManufacturer(),
+                    book.getIsbn(), book.getPublicationDate(), book.getCoverType()));
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();

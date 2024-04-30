@@ -20,7 +20,11 @@ public class Book {
     private Integer pageLength;
     private String language;
     private String manufacturer;
+    private String isbn; // New property
+    private String publicationDate; // New property
+    private String coverType; // New property
 
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -91,5 +95,29 @@ public class Book {
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public String getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(String publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+
+    public String getCoverType() {
+        return coverType;
+    }
+
+    public void setCoverType(String coverType) {
+        this.coverType = coverType;
     }
 }

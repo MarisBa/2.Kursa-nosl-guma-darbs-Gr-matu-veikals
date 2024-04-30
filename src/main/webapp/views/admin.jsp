@@ -80,6 +80,12 @@
             <input type="text" id="language" name="language" placeholder="Enter language" required>
             <label for="manufacturer">Manufacturer:</label>
             <input type="text" id="manufacturer" name="manufacturer" placeholder="Enter manufacturer" required>
+            <label for="isbn">ISBN code:</label>
+            <input type="text" id="isbn" name="isbn" placeholder="Enter ISBN code" required>
+            <label for="publicationDate">Publication Date:</label>
+            <input type="text" id="publicationDate" name="publicationDate" placeholder="Enter publication date" required>
+            <label for="coverType">Cover Type:</label>
+            <input type="text" id="coverType" name="coverType" placeholder="Enter cover type" required>
 
             <button type="submit">Save Book</button>
         </form>
