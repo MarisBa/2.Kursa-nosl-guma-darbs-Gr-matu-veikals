@@ -69,7 +69,7 @@ public class AdminController {
         Optional<Book> optionalBook = bookRepository.findById(bookId);
         if (optionalBook.isPresent()) {
             model.addAttribute("book", optionalBook.get());
-            return "book";
+            return "book"; // Assuming you have a book.html template
         } else {
             // Handle if book not found
             return "error"; // or redirect to an error page
