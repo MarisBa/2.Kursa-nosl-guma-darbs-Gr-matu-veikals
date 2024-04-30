@@ -2,16 +2,16 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Book;
 import com.example.demo.repository.BookRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class AdminController {
@@ -25,7 +25,7 @@ public class AdminController {
     }
 
     @PostMapping("/admin/save-book")
-    String saveBookAction(@RequestParam Map<String,String> allParams) {
+    String saveBookAction(@RequestParam Map<String, String> allParams, RedirectAttributes redirectAttributes) {
         // Extract parameters from the request
         String title = allParams.get("title");
         String bookImageUrl = allParams.get("bookImageUrl");
@@ -48,12 +48,26 @@ public class AdminController {
         book.setManufacturer(manufacturer);
 
         // Save the book using BookRepository
-        bookRepository.save(book);
+        Book savedBook = bookRepository.save(book);
 
         // Save the book information in cart.csv
-        saveToCartCSV(book);
+        saveToCartCSV(savedBook);
 
-        return "admin";
+        // Redirect to the book details page with the book ID
+        redirectAttributes.addAttribute("id", savedBook.getId()); // Assuming getId() method exists
+        return "redirect:/admin/book";
+    }
+
+    @GetMapping("/admin/book")
+    public String viewBookPage(@RequestParam("id") Long bookId, Model model) {
+        Optional<Book> optionalBook = bookRepository.findById(bookId);
+        if (optionalBook.isPresent()) {
+            model.addAttribute("book", optionalBook.get());
+            return "book";
+        } else {
+            // Handle if book not found
+            return "error"; // or redirect to an error page
+        }
     }
 
     private void saveToCartCSV(Book book) {

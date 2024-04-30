@@ -5,14 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     private String title;
     private String bookImageUrl;
@@ -22,6 +20,14 @@ public class Book {
     private Integer pageLength;
     private String language;
     private String manufacturer;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -87,4 +93,3 @@ public class Book {
         this.manufacturer = manufacturer;
     }
 }
-

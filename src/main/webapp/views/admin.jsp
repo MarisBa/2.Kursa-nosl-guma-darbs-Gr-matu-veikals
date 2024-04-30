@@ -35,6 +35,11 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
+        input[type="text"]::placeholder,
+        input[type="number"]::placeholder,
+        textarea::placeholder {
+            color: #aaa;
+        }
         button[type="submit"] {
             background-color: #4caf50;
             color: #fff;
@@ -48,6 +53,11 @@
         button[type="submit"]:hover {
             background-color: #45a049;
         }
+        #message {
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -55,24 +65,34 @@
         <h1>Add New Book</h1>
         <form action="/admin/save-book" method="post">
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required>
+            <input type="text" id="title" name="title" placeholder="Enter title" required>
             <label for="bookImageUrl">Book Image URL:</label>
-            <input type="text" id="bookImageUrl" name="bookImageUrl" required>
+            <input type="text" id="bookImageUrl" name="bookImageUrl" placeholder="Enter image URL" required>
             <label for="price">Price:</label>
-            <input type="text" id="price" name="price" required>
+            <input type="text" id="price" name="price" placeholder="Enter price" required>
             <label for="author">Author:</label>
-            <input type="text" id="author" name="author" required>
+            <input type="text" id="author" name="author" placeholder="Enter author" required>
             <label for="about">About:</label>
-            <textarea id="about" name="about" required></textarea>
+            <textarea id="about" name="about" placeholder="Enter about" required></textarea>
             <label for="pageLength">Page Length:</label>
-            <input type="number" id="pageLength" name="pageLength" required min="1">
+            <input type="number" id="pageLength" name="pageLength" placeholder="Enter page length" required min="1">
             <label for="language">Language:</label>
-            <input type="text" id="language" name="language" required>
+            <input type="text" id="language" name="language" placeholder="Enter language" required>
             <label for="manufacturer">Manufacturer:</label>
-            <input type="text" id="manufacturer" name="manufacturer" required>
+            <input type="text" id="manufacturer" name="manufacturer" placeholder="Enter manufacturer" required>
 
             <button type="submit">Save Book</button>
         </form>
+        <div id="message">New book added successfully!</div>
     </div>
+
+    <script>
+        // Show message when new book is added
+        const message = document.getElementById('message');
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function() {
+            message.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
