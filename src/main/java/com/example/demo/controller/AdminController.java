@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Map;
 
 @Controller
@@ -48,6 +50,22 @@ public class AdminController {
         // Save the book using BookRepository
         bookRepository.save(book);
 
+        // Save the book information in cart.csv
+        saveToCartCSV(book);
+
         return "admin";
+    }
+
+    private void saveToCartCSV(Book book) {
+        String csvFile = "/workspaces/ProjectRepoNew/src/main/resources/cart.csv";
+        try (FileWriter writer = new FileWriter(csvFile, true)) {
+            // Append the book information to the CSV file
+            writer.append(String.format("%s,%s,%.2f,%s,%s,%d,%s,%s%n",
+                    book.getTitle(), book.getBookImageUrl(), book.getPrice(), book.getAuthor(),
+                    book.getAbout(), book.getPageLength(), book.getLanguage(), book.getManufacturer()));
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
