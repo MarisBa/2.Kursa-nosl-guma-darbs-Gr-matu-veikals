@@ -38,7 +38,7 @@ public class AdminController {
         String isbn = allParams.get("isbn"); // New property
         String publicationDate = allParams.get("publicationDate"); // New property
         String coverType = allParams.get("coverType"); // New property
-
+    
         // Create a new Book object
         Book book = new Book();
         book.setTitle(title);
@@ -52,29 +52,29 @@ public class AdminController {
         book.setIsbn(isbn); // Set ISBN code
         book.setPublicationDate(publicationDate); // Set publication date
         book.setCoverType(coverType); // Set cover type
-
+    
         // Save the book using BookRepository
         Book savedBook = bookRepository.save(book);
 
-        // Save the book information in cart.csv
         saveToCartCSV(savedBook);
-
+    
         // Redirect to the book details page with the book ID
-        redirectAttributes.addAttribute("id", savedBook.getId()); // Assuming getId() method exists
-        return "redirect:/admin/book";
+        return "redirect:/admin/book/" + savedBook.getId();
     }
 
-    @GetMapping("/admin/book")
-    public String viewBookPage(@RequestParam("id") Long bookId, Model model) {
+    @GetMapping("/admin/book/{id}")
+    public String viewBookPage(@PathVariable("id") Long bookId, Model model) {
         Optional<Book> optionalBook = bookRepository.findById(bookId);
         if (optionalBook.isPresent()) {
             model.addAttribute("book", optionalBook.get());
-            return "book"; // Assuming you have a book.html template
+            return "book"; // Return book.html template
         } else {
-            // Handle if book not found
+            // Set error message
+            model.addAttribute("errorMessage", "Book not found");
             return "error"; // or redirect to an error page
         }
     }
+    
 
     private void saveToCartCSV(Book book) {
         String csvFile = "/workspaces/ProjectRepoNew/src/main/resources/cart.csv";

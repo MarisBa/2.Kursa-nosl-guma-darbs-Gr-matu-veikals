@@ -221,7 +221,6 @@
                 <h6>Free delivery to any GLOBUSS bookstore within 1-5 business days when the order is ready for pickup, you will receive an email and/or SMS.</h6>
             </div>
         </div>
-        <a th:href="@{/admin/book/{id}(id=${book.id})}">View Details</a>
     </div>
     <script>
         // Get the quantity input and buttons
