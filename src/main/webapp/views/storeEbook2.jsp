@@ -328,7 +328,7 @@ background-color: #c82333; /* Darker red on hover */
                 </a>
             </div>
             <div class="book-card">
-                <a href="/the-catcher-in-the-rye">
+                <a href="/admin/book/${1}">
                     <img src="https://assets-prd.ignimgs.com/2023/05/03/the-catcher-in-the-rye-1683157092601.jpeg?height=220" alt="Book Cover">
                     <p>J.D. SALINGER</p>
                     <h3>The CATCHER in the RYE</h3>
