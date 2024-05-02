@@ -73,7 +73,7 @@
             <label for="author">Author:</label>
             <input type="text" id="author" name="author" placeholder="Enter author" required>
             <label for="about">About:</label>
-            <textarea id="about" name="about" placeholder="Enter about" required></textarea>
+            <textarea id="about" name="about" placeholder="Enter about" required maxlength="1000"></textarea>
             <label for="pageLength">Page Length:</label>
             <input type="number" id="pageLength" name="pageLength" placeholder="Enter page length" required min="1">
             <label for="language">Language:</label>

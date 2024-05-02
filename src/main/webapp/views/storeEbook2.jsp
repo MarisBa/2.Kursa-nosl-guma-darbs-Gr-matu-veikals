@@ -304,7 +304,7 @@ background-color: #c82333; /* Darker red on hover */
                 </a>
             </div>
             <div class="book-card">
-                <a href="/heidi">
+                <a href="/admin/book/1">
                     <img src="https://assets-prd.ignimgs.com/2023/05/03/heidi-book-1683154826105.jpg?height=220" alt="Book Cover">
                     <p>JOHANNA SPYRI</p>
                     <h3>HEIDI</h3>
