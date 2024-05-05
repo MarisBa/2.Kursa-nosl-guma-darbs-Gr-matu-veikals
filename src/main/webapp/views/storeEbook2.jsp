@@ -280,7 +280,7 @@ background-color: #c82333; /* Darker red on hover */
     <div class="popular-books-slider">
         <div class="popular-books">
             <div class="book-card">
-                <a href="/the-holy-grail-of-investing">
+                <a href="/admin/book/2">
                     <img src="https://eglobuss.lv/storage/attachments/2y0/7ce/4bc/2y07ce4bcln23sbf34hfqpc73-350x500-resize-quality(85).webp" alt="Book Cover">
                     <p>TONY ROBBINS</p>
                     <h3>Life Force : How New Breakthroughs in Precision Medicine Can Transform the Quality of Your Life</h3>
@@ -296,7 +296,7 @@ background-color: #c82333; /* Darker red on hover */
                 </a>
             </div>
             <div class="book-card">
-                <a href="/the-atlas-manuever">
+                <a href="/admin/book/3">
                     <img src="https://image.ebooks.com/cover/210877223.jpg?width=166&height=250&quality=85" alt="Book Cover">
                     <p>STEVE BERRY</p>
                     <h3>The ATLAS MANUEVER</h3>

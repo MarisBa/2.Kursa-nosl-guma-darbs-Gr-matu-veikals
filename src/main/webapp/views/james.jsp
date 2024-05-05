@@ -182,9 +182,9 @@
         <div class="details">
             <h2>James : The Powerful Reimagining of The Adventures of Huckleberry Finn</h2>
             <h3 style="color: red;">$15.50</h3> <!-- Adjusted price text color to red -->
-            <p>"A brilliant, action-packed reimagining of The Adventures of Huckleberry Finn, both harrowing and ferociously funny, told from the enslaved Jim's point of view.
+            <p>"A brilliant action-packed reimagining of The Adventures of Huckleberry Finn both harrowing and ferociously funny told from the enslaved Jim s point of view.
 
-                When the enslaved Jim overhears that he is about to be sold to a man in New Orleans, separated from his wife and daughter forever, he decides to hide on nearby Jackson Island until he can formulate a plan."</p>
+                When the enslaved Jim overhears that he is about to be sold to a man in New Orleans separated from his wife and daughter forever he decides to hide on nearby Jackson Island until he can formulate a plan."</p>
 
             
                 <div class="button-container">

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Book {
@@ -16,13 +17,16 @@ public class Book {
     private String bookImageUrl;
     private Double price;
     private String author;
+    
+    @Size(max = 1000, message = "About field must be maximum 1000 characters")
     private String about;
+
     private Integer pageLength;
     private String language;
     private String manufacturer;
-    private String isbn; // New property
-    private String publicationDate; // New property
-    private String coverType; // New property
+    private String isbn;
+    private String publicationDate;
+    private String coverType;
 
     // Getters and setters
     public Long getId() {
