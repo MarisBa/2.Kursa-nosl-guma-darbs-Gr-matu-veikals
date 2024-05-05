@@ -288,10 +288,10 @@ background-color: #c82333; /* Darker red on hover */
                 </a>
             </div>
             <div class="book-card">
-                <a href="/the-last-devil-to-die">
-                    <img src="https://image.ebooks.com/cover/210660466.jpg?width=166&height=250&quality=85" alt="Book Cover">
-                    <p>RICHARD OSMAN</p>
-                    <h3>The Last DEVIL to Die</h3>
+                <a href="/admin/book/5">
+                    <img src="https://eglobuss.lv/storage/attachments/8qf/zag/jtc/8qfzagjtc4fdv65hiefqti9ak.jpg" alt="Book Cover">
+                    <p>Gideon Defoe</p>
+                    <h3>An Atlas of Extinct Countries</h3>
                     <button class="add-to-cart-button">Add to Cart</button>
                 </a>
             </div>
@@ -312,42 +312,42 @@ background-color: #c82333; /* Darker red on hover */
                 </a>
             </div>
             <div class="book-card">
-                <a href="/james">
-                    <img src="https://m.media-amazon.com/images/I/81etScjkDWL._AC_UF1000,1000_QL80_.jpg" alt="Book Cover">
-                    <p>Percival Everett</p>
-                    <h3>James : The Powerful Reimagining of The Adventures of Huckleberry Finn</h3>
+                <a href="/admin/book/6">
+                    <img src="https://eglobuss.lv/storage/attachments/bni/gpg/9o1/bnigpg9o12ap2guamq8g692so.jpg" alt="Book Cover">
+                    <p>Morgan Housel</p>
+                    <h3>Same as Ever : Timeless Lessons on Risk, Opportunity and Living a Good Life</h3>
                     <button class="add-to-cart-button">Add to Cart</button>
                 </a>
             </div>
             <div class="book-card">
-                <a href="/one-hundred-years-of-solitude">
-                    <img src="https://assets-prd.ignimgs.com/2023/05/03/hundred-solitude-harper-perennial-classics-1683156590489.jpeg?height=220" alt="Book Cover">
-                    <p>GABRIEL GARCIA </p>
-                    <h3>One hundred years of solitude</h3>
+                <a href="/admin/book/7">
+                    <img src="https://eglobuss.lv/storage/attachments/1pt/edi/jrk/1ptedijrk04t0sux3px5fxf5g.jpg" alt="Book Cover">
+                    <p>Agatha Christie</p>
+                    <h3>Partners in Crime : A Tommy & Tuppence Collection</h3>
                     <button class="add-to-cart-button">Add to Cart</button>
                 </a>
             </div>
             <div class="book-card">
-                <a href="/admin/book/${1}">
-                    <img src="https://assets-prd.ignimgs.com/2023/05/03/the-catcher-in-the-rye-1683157092601.jpeg?height=220" alt="Book Cover">
-                    <p>J.D. SALINGER</p>
-                    <h3>The CATCHER in the RYE</h3>
+                <a href="/admin/book/4">
+                    <img src="https://eglobuss.lv/storage/attachments/2xw/uhk/joh/2xwuhkjoh1zvzzhv8nlwapr7m.jpg" alt="Book Cover">
+                    <p>Albert Moukheiber</p>
+                    <h3>Your Brain Is Playing Tricks On You: How the Brain Shapes Opinions and Perceptions</h3>
                     <button class="add-to-cart-button">Add to Cart</button>
                 </a>
             </div>
             <div class="book-card">
-                <a href="/harry-petter-and-the-deathly-hallows">
-                    <img src="https://assets-prd.ignimgs.com/2023/05/03/hp-deathly-hallows-1683157182524.jpeg?height=220" alt="Book Cover">
-                    <p>J. K. Rowling</p>
-                    <h3>Harry Potter and the Deathly Hallows</h3>
+                <a href="/admin/book/8">
+                    <img src="https://images.routledge.com/common/jackets/crclarge/978041592/9780415922227.jpg" alt="Book Cover">
+                    <p>Jordan B. Peterson</p>
+                    <h3>Maps of Meaning: The Architecture of Belief</h3>
                     <button class="add-to-cart-button">Add to Cart</button>
                 </a>
             </div>
             <div class="book-card">
-                <a href="/harry-potter-and-the-charmber-of-sercrets">
-                    <img src="https://assets-prd.ignimgs.com/2023/05/03/hp-the-half-blood-prince-1683157309141.jpeg?height=220" alt="Book Cover">
-                    <p>J. K. Rowling</p>
-                    <h3>Harry potter and the Charmber of Secrets</h3>
+                <a href="/admin/book/9">
+                    <img src="https://eglobuss.lv/storage/attachments/5pd/gkx/79k/5pdgkx79kjvjzugezsxcfjclx.jpg" alt="Book Cover">
+                    <p>Alexandre Samson</p>
+                    <h3>Givenchy Catwalk : The Complete Collections</h3>
                     <button class="add-to-cart-button">Add to Cart</button>
                 </a>
             </div>
