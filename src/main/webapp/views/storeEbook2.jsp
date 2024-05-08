@@ -272,7 +272,7 @@ background-color: #c82333; /* Darker red on hover */
             <a href="#" class="cart-icon-button">
                 <button type="button"><i class="fa-solid fa-cart-shopping"></i></button>
             </a>
-            <button type="submit" class="user-icon-button"><i class="fa-regular fa-user"></i> Log In</button>
+            <a href="/Registration" class="user-icon-button"><i class="fa-regular fa-user"></i> Sign In</a>
         </div>
     </div>
     

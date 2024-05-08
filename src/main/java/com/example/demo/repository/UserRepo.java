@@ -4,9 +4,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.example.demo.model.UserRegistration;
 
+public interface UserRepo extends CrudRepository<UserRegistration, Long> {
 
+    UserRegistration findByEmail(String email);
 
-public interface UserRepo extends CrudRepository<UserRegistration, Long>{
-
-	public UserRegistration findByEmailAndPassword(String email,String password);
+    UserRegistration findByEmailAndPassword(String email, String password);
 }

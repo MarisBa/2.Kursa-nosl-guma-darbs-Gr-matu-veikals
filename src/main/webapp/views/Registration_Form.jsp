@@ -94,23 +94,25 @@
     <form action="Registration" method="post">
         <div class="title">Registration</div>
         <div class="input-box">
-          <input type="text" name="uname" placeholder="Enter Your Name" pattern="^[a-zA-ZÀ-ÿ'-]{2,30}$" title="Name must contain only letters and be at least 2 characters long" required>
-      </div>
-      <div class="input-box">
-          <input type="text" name="email" placeholder="Enter Your Email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Enter a valid email address" required>
-      </div>
-      <div class="input-box">
-        <input type="password" name="crpassword" placeholder="Create Password" pattern=".{8,}" title="Password must be at least 8 characters long" required>
-    </div>
-    <div class="input-box">
-        <input type="password" name="copassword" placeholder="Confirm Password" pattern=".{8,}" title="Password must match the one above" required>
-    </div>
+            <input type="text" name="uname" placeholder="Enter Your Name" pattern="^[a-zA-ZÀ-ÿ'-]{2,30}$" title="Name must contain only letters and be at least 2 characters long" required>
+        </div>
+        <div class="input-box">
+            <input type="text" name="email" placeholder="Enter Your Email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Enter a valid email address" required>
+        </div>
+        <div class="input-box">
+            <input type="password" name="password" placeholder="Create Password" pattern=".{8,}" title="Password must be at least 8 characters long" required>
+        </div>
+        <div class="input-box">
+            <input type="password" name="copassword" placeholder="Confirm Password" pattern=".{8,}" title="Password must match the one above" required>
+        </div>
     
-      
         <div class="input-box">
             <button type="submit" name="">Register Now</button>
         </div>
+    
+        <div class="login-link">Already have an account? <a href="AlreadyLogin">Log in</a></div>
     </form>
+    
 </div>
 </body>
 </html>
