@@ -262,19 +262,23 @@ background-color: #c82333; /* Darker red on hover */
 </head>
 <body>
     
-    <div class="header-container">
-        <img class="logo" src="https://cdn.shopify.com/s/files/1/0277/3830/8642/files/labrsbkstorelogo.jpg?height=628&pad_color=ffffff&v=1614777541&width=1200" alt="Logo">
-        <div class="search-bar">
-            <form action="/SearchServlet" method="get">
-                <input type="text" name="query" placeholder="Search for books...">
-                <button type="submit" class="search-icon-button"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-            <a href="#" class="cart-icon-button">
-                <button type="button"><i class="fa-solid fa-cart-shopping"></i></button>
-            </a>
-            <a href="/Registration" class="user-icon-button"><i class="fa-regular fa-user"></i> Sign In</a>
-        </div>
+<div class="header-container">
+    <img class="logo" src="https://cdn.shopify.com/s/files/1/0277/3830/8642/files/labrsbkstorelogo.jpg?height=628&pad_color=ffffff&v=1614777541&width=1200" alt="Logo">
+    <div class="search-bar">
+        <form action="/SearchServlet" method="get">
+            <input type="text" name="query" placeholder="Search for books...">
+            <button type="submit" class="search-icon-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <a href="#" class="cart-icon-button">
+            <button type="button"><i class="fa-solid fa-cart-shopping"></i></button>
+        </a>
+        <a href="/Registration" class="user-icon-button"><i class="fa-regular fa-user"></i> Sign In</a>
+        <p>Hello, <span id="username"></span></p>
     </div>
+</div>
+
+
+
     
     
     <div class="popular-books-slider">
@@ -379,6 +383,14 @@ background-color: #c82333; /* Darker red on hover */
 </div>
 
 <script>
+        // Get the username from the server and display it
+        const usernameSpan = document.getElementById("username");
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+        if (username) {
+            usernameSpan.textContent = username;
+        }
+
     // Cart object to store items
     const cart = [];
 

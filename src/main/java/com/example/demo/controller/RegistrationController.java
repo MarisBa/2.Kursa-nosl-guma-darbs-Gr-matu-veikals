@@ -103,12 +103,19 @@ public ModelAndView login(String email, String password) {
     System.out.println("Password: " + password);
 
     // Check credentials against the users.csv file
-    if (validateCredentials(email, password)) {
+    String[] userDetails = validateCredentials(email, password);
+    if (userDetails != null) {
         System.out.println("Login successful for user: " + email);
+        String name = userDetails[1]; // Index 1 is assumed to be the name
+        System.out.println("Welcome, " + name);
+
+        // Set username as a parameter to pass to the storeEbook2 page
+        mv.addObject("username", name);
+
         String msg = "Login Successful";
         mv.addObject("message", msg);
         // Set view to redirect to the storeEbook2 page on successful login
-        mv.setViewName("redirect:/storeEbook2");
+        mv.setViewName("redirect:/storeEbook2?username=" + name);
     } else {
         System.out.println("Login failed for email: " + email);
         String msg = "Sorry, you entered an incorrect email or password";
@@ -118,8 +125,9 @@ public ModelAndView login(String email, String password) {
     return mv;
 }
 
+
 // Validate user credentials against the users.csv file
-private boolean validateCredentials(String email, String password) {
+private String[] validateCredentials(String email, String password) {
     String csvFile = "/workspaces/ProjectRepoNew/src/main/resources/users.csv";
     try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
         String line;
@@ -127,7 +135,7 @@ private boolean validateCredentials(String email, String password) {
             String[] parts = line.split(",");
             if (parts.length >= 4 && parts[2].trim().equals(email) && parts[3].trim().equals(password)) {
                 // Email and password found in CSV
-                return true;
+                return parts;
             }
         }
     } catch (IOException e) {
@@ -135,8 +143,9 @@ private boolean validateCredentials(String email, String password) {
         System.err.println("Error while reading CSV: " + e.getMessage());
     }
     // Email or password not found in CSV
-    return false;
+    return null;
 }
+
 
 
 
