@@ -125,13 +125,16 @@
         }
     
         .user-icon-button {
-            padding: 10px; /* Adjust padding as needed */
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-size: 12px;
-        }
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 12px;
+    color: black; /* Change button text color */
+    text-decoration: none; /* Remove underline */
+}
+
     
         .user-icon-button:hover {
             background-color: #f0f0f0; /* Change to desired hover color */
@@ -257,6 +260,25 @@ transition: background-color 0.3s;
 .modal-content ul li button:hover {
 background-color: #c82333; /* Darker red on hover */
 }
+
+.user-icon-button,
+.user-icon-button i,
+#username {
+    padding: 10px;
+    
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 12px;
+    color: black; /* Change button text color */
+    text-decoration: none; /* Remove underline */
+}
+
+#username:hover {
+    background-color: #f0f0f0; /* Change to desired hover color */
+}
+
     </style>
     
 </head>
@@ -273,7 +295,7 @@ background-color: #c82333; /* Darker red on hover */
             <button type="button"><i class="fa-solid fa-cart-shopping"></i></button>
         </a>
         <a href="/Registration" class="user-icon-button"><i class="fa-regular fa-user"></i> Sign In</a>
-        <p>Hello, <span id="username"></span></p>
+        <span id="username"></span>
     </div>
 </div>
 
@@ -383,13 +405,19 @@ background-color: #c82333; /* Darker red on hover */
 </div>
 
 <script>
-        // Get the username from the server and display it
-        const usernameSpan = document.getElementById("username");
-        const urlParams = new URLSearchParams(window.location.search);
-        const username = urlParams.get('username');
-        if (username) {
-            usernameSpan.textContent = username;
-        }
+document.addEventListener("DOMContentLoaded", function () {
+    const signInButton = document.querySelector(".user-icon-button");
+
+    // Get the username from the server and display it
+    const usernameSpan = document.getElementById("username");
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    if (username) {
+        signInButton.innerHTML = username; // Change button text to "Profile"
+    }
+});
+
+
 
     // Cart object to store items
     const cart = [];
