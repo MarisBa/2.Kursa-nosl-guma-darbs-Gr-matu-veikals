@@ -193,7 +193,7 @@
                     <input type="number" id="quantity" value="1" min="1" max="999">
                     <button id="increment" style="border-color: white;">+</button>
                 </div>
-                <button>
+                <button id="addToCart">
                     <i class="fa-regular fa-bookmark"></i>
                     <span style="font-weight: lighter;">Add to cart</span>
                 </button>
@@ -252,6 +252,22 @@
                 quantityInput.value = currentValue + 1;
             }
         }
+
+            // Add event listener for Add to Cart button
+    addToCartButton.addEventListener('click', () => {
+        const quantity = parseInt(quantityInput.value);
+        const bookId = "${book.id}"; // Assuming there is a book id available
+        addToCart(bookId, quantity);
+    });
+
+    // Function to add the book to cart
+    function addToCart(bookId, quantity) {
+        // Here you can perform actions like sending a request to the server to add the book to the cart
+        // For demonstration purposes, let's just log the book details
+        console.log("Book ID:", bookId);
+        console.log("Quantity:", quantity);
+        alert("Book added to cart!"); // You can replace this with any feedback message
+    }
     </script>
 </body>
 </html>

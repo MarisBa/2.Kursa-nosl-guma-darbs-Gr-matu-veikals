@@ -280,8 +280,8 @@ background-color: #c82333; /* Darker red on hover */
 }
 .save-button {
         padding: 8px 16px;
-        background-color: #28a745;
-        color: #fff;
+        background-color: #28a745; /* Green color */
+        color: #fff; /* White text color */
         border: none;
         border-radius: 4px;
         cursor: pointer;
@@ -291,6 +291,24 @@ background-color: #c82333; /* Darker red on hover */
     .save-button:hover {
         background-color: #218838; /* Darker shade on hover */
     }
+
+    .view-all-button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    outline: none; /* Remove outline */
+}
+
+.view-all-button:hover {
+    background-color: #0056b3; /* Darker shade of blue on hover */
+}
+
+
 
     </style>
     
@@ -310,6 +328,9 @@ background-color: #c82333; /* Darker red on hover */
         <a href="/Registration" class="user-icon-button"><i class="fa-regular fa-user"></i> Sign In</a>
         <span id="username"></span>
     </div>
+    <a href="/all-books" class="view-all-button">
+        <button class="view-all-books-button">View All Books</button>
+    </a>
 </div>
 
 
@@ -409,7 +430,7 @@ background-color: #c82333; /* Darker red on hover */
         <h2>Your Cart</h2>
         <ul id="cartItems"></ul>
         <div id="cartControls">
-            <button id="saveToCSVBtn" class="save-button">Save to CSV</button> <!-- New button -->
+            <button id="saveToCSVBtn" class="save-button">Save to CSV</button>
             <a href="/cart2"><button id="checkoutBtn">Checkout</button></a>
         </div>
     </div>
@@ -483,9 +504,7 @@ function loadCartFromLocalStorage() {
     }
 }
 
-// Function to update the cart UI
 
-// Function to update the cart UI
 // Function to update the cart UI
 function updateCartUI() {
     const cartItemsElement = document.getElementById("cartItems");

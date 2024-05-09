@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.example.demo.model.Book;
 import com.example.demo.model.UserRegistration;
 import com.example.demo.repository.UserRepo;
 
@@ -269,6 +271,39 @@ private void saveToCSV(UserRegistration user) {
         return cartItems;
     }
     
+    @GetMapping("/all-books")
+    public ModelAndView getAllBooks() {
+        List<Book> books = readAllBooksFromCSV();
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("all-books");
+        mv.addObject("books", books);
+        return mv;
+    }
 
-
+    private List<Book> readAllBooksFromCSV() {
+        List<Book> books = new ArrayList<>();
+        String csvFile = "/workspaces/ProjectRepoNew/src/main/resources/cart.csv";
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 12) { // Adjust if necessary
+                    String title = parts[0].trim(); // Adjust index for title
+                    String author = parts[4].trim();
+                    double price = Double.parseDouble(parts[3].trim());
+    
+                    Book book = new Book();
+                    book.setTitle(title);
+                    book.setAuthor(author);
+                    book.setPrice(price);
+    
+                    books.add(book);
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+            // Log or handle the exception
+        }
+        return books;
+    }
 }
