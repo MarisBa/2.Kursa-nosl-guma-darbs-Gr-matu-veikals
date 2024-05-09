@@ -1,18 +1,28 @@
 package com.example.demo.controller;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.model.UserRegistration;
 import com.example.demo.repository.UserRepo;
 
+
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+
+
+
+
 
 @Controller
 public class RegistrationController {
@@ -195,9 +205,70 @@ private void saveToCSV(UserRegistration user) {
 
     @GetMapping("/cart2")
     public ModelAndView getbookcart() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("cart2"); // This assumes "storeEbook.jsp" exists in your configured view resolver
+        List<String> cartItems = readCartItemsFromCSV();
+        ModelAndView mv = new ModelAndView("cart2");
+        mv.addObject("cartItems", cartItems);
         return mv;
     }
+    
+
+    @PostMapping("/save-cart")
+    public ModelAndView saveCart(@RequestParam("username") String username, @RequestParam("cartItems") List<String> cartItems) {
+        try {
+            String csvFilePath = "/workspaces/ProjectRepoNew/src/main/resources/cartForbooks.csv";
+            FileWriter csvWriter = new FileWriter(csvFilePath, true); // Append mode
+            for (String item : cartItems) {
+                // Remove "Delete" text and trim spaces
+                String cleanedItem = item.replace("Delete", "").trim();
+                csvWriter.append(username + cleanedItem + "\n"); // Add comma between username and item
+            }
+            csvWriter.flush();
+            csvWriter.close();
+            ModelAndView mv = new ModelAndView("redirect:/storeEbook2");
+            mv.addObject("message", "Cart saved successfully");
+            return mv;
+        } catch (IOException e) {
+            ModelAndView mv = new ModelAndView("redirect:/storeEbook2");
+            mv.addObject("error", "Error saving cart: " + e.getMessage());
+            return mv;
+        }
+    }
+    
+    @GetMapping("/checkout")
+    public ModelAndView checkout() {
+        List<String> cartItems = readCartItemsFromCSV();
+    
+        // Log cart items to console
+        System.out.println("Cart Items:");
+        for (String item : cartItems) {
+            System.out.println(item);
+        }
+    
+        ModelAndView modelAndView = new ModelAndView("checkout"); // Make sure the view name matches your JSP file name
+        modelAndView.addObject("cartItems", cartItems);
+        return modelAndView;
+    }
+    
+    
+
+    private List<String> readCartItemsFromCSV() {
+        List<String> cartItems = new ArrayList<>();
+        String csvFile = "/workspaces/ProjectRepoNew/src/main/resources/cartForbooks.csv";
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String trimmedItem = line.trim();
+                if (!cartItems.contains(trimmedItem)) { // Check for duplicates
+                    cartItems.add(trimmedItem);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Log or handle the exception
+        }
+        return cartItems;
+    }
+    
+
 
 }

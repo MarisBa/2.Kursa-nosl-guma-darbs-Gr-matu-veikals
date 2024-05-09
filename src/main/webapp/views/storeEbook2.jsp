@@ -278,6 +278,19 @@ background-color: #c82333; /* Darker red on hover */
 #username:hover {
     background-color: #f0f0f0; /* Change to desired hover color */
 }
+.save-button {
+        padding: 8px 16px;
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .save-button:hover {
+        background-color: #218838; /* Darker shade on hover */
+    }
 
     </style>
     
@@ -396,119 +409,138 @@ background-color: #c82333; /* Darker red on hover */
         <h2>Your Cart</h2>
         <ul id="cartItems"></ul>
         <div id="cartControls">
-            <button id="decrementBtn">-</button>
-            <span id="quantity">1</span>
-            <button id="incrementBtn">+</button>
-            <button id="checkoutBtn">Checkout</button>
+            <button id="saveToCSVBtn" class="save-button">Save to CSV</button> <!-- New button -->
+            <a href="/cart2"><button id="checkoutBtn">Checkout</button></a>
         </div>
     </div>
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const signInButton = document.querySelector(".user-icon-button");
 
-    // Get the username from the server and display it
-    const usernameSpan = document.getElementById("username");
-    const urlParams = new URLSearchParams(window.location.search);
-    const username = urlParams.get('username');
-    if (username) {
-        signInButton.innerHTML = username; // Change button text to "Profile"
+// Define cart array
+let cart = [];
+
+// Function to get cart items
+function getCartItems() {
+    return cart;
+}
+
+function displayCartItems() {
+    const cartItems = getCartItems();
+    if (cartItems.length > 0) {
+        console.log("Books in Cart:");
+        cartItems.forEach((item, index) => {
+            console.log(`${index + 1}. ${item}`);
+        });
+    } else {
+        console.log("Cart is empty.");
     }
-});
+}
 
-
-
-    // Cart object to store items
-    const cart = [];
-
-    // Function to add item to the cart
-    function addToCart(bookTitle) {
+// Function to add item to the cart
+function addToCart(bookTitle) {
+    // Check if the book is already in the cart
+    if (!cart.includes(bookTitle)) {
         cart.push(bookTitle);
         updateCartUI();
+        saveToLocalStorage(cart); // Save cart to local storage
+        alert("Added to cart!"); // Show alert for demonstration
+    } else {
+        alert("This book is already added to the cart.");
     }
+}
 
-    // Function to remove item from the cart
-    function removeFromCart(index) {
-        cart.splice(index, 1);
+    // Function to save cart to local storage
+function saveToLocalStorage(cartItems) {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+}
+
+// Function to load cart from local storage
+function loadCartFromLocalStorage() {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        cart.push(...JSON.parse(savedCart));
         updateCartUI();
     }
+}
 
-    // Function to update the cart UI
-    function updateCartUI() {
-        const cartItemsElement = document.getElementById("cartItems");
-        cartItemsElement.innerHTML = "";
-        cart.forEach((item, index) => {
-            const li = document.createElement("li");
-            li.textContent = item;
-            const deleteButton = document.createElement("button");
-            deleteButton.textContent = "Delete";
-            deleteButton.addEventListener("click", function() {
-                removeFromCart(index);
-            });
-            li.appendChild(deleteButton);
-            cartItemsElement.appendChild(li);
+
+
+
+
+
+// Function to save cart to local storage
+function saveToLocalStorage(cartItems) {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+}
+
+// Function to load cart from local storage
+function loadCartFromLocalStorage() {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        cart.push(...JSON.parse(savedCart));
+        updateCartUI();
+    }
+}
+
+// Function to update the cart UI
+
+// Function to update the cart UI
+// Function to update the cart UI
+function updateCartUI() {
+    const cartItemsElement = document.getElementById("cartItems");
+    cartItemsElement.innerHTML = "";
+    cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        const bookTitle = item.replace("Delete", "").trim(); // Remove "Delete" and trim spaces
+        li.textContent = bookTitle;
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", function() {
+            removeFromCart(index);
         });
+        li.appendChild(deleteButton);
+        cartItemsElement.appendChild(li);
+    });
+}
+
+
+
+
+
+
+
+
+// Event listener for opening the cart modal
+const cartButton = document.querySelector(".cart-icon-button");
+cartButton.addEventListener("click", function() {
+    openCartModal();
+});
+
+// Function to open the cart modal
+function openCartModal() {
+    const modal = document.getElementById("cartModal");
+    modal.style.display = "block";
+}
+
+ // Function to close the cart modal
+ function closeCartModal() {
+        const modal = document.getElementById("cartModal");
+        modal.style.display = "none";
+        // Also clear the cart when closing the modal
+        cart.length = 0;
+        updateCartUI();
+        localStorage.removeItem('cart'); // Remove cart from local storage
     }
 
-    // Event listener for Add to Cart buttons
-    document.addEventListener("DOMContentLoaded", function () {
-        const addToCartButtons = document.querySelectorAll(".add-to-cart-button");
-        addToCartButtons.forEach(button => {
-            button.addEventListener("click", function (event) {
-                event.preventDefault(); // Prevent anchor tag's default behavior
-                const bookTitle = this.parentElement.querySelector("h3").textContent;
-                addToCart(bookTitle); // Add the book to cart
-                alert("Added to cart!"); // Placeholder for demonstration
-            });
-        });
-
-        // Event listener for opening and closing the cart modal
-        const cartModal = document.getElementById("cartModal");
-        const cartButton = document.querySelector(".cart-icon-button button");
-        const closeModal = cartModal.querySelector(".close");
-        cartButton.onclick = function() {
-            cartModal.style.display = "block";
-        }
-        closeModal.onclick = function() {
-            cartModal.style.display = "none";
-        }
-        window.onclick = function(event) {
-            if (event.target == cartModal) {
-                cartModal.style.display = "none";
-            }
+    // Event listener for closing the cart modal
+    document.addEventListener("click", function(event) {
+        const modal = document.getElementById("cartModal");
+        const closeButton = document.querySelector(".close");
+        if (event.target === modal || event.target === closeButton) {
+            closeCartModal();
         }
     });
-
-    // Function to update quantity
-    function updateQuantity(value) {
-        const quantityElement = document.getElementById("quantity");
-        const currentQuantity = parseInt(quantityElement.textContent);
-        const newQuantity = currentQuantity + value;
-        if (newQuantity >= 1) {
-            quantityElement.textContent = newQuantity;
-        }
-    }
-
-    // Event listener for increment and decrement buttons
-    const decrementBtn = document.getElementById("decrementBtn");
-    const incrementBtn = document.getElementById("incrementBtn");
-    const checkoutBtn = document.getElementById("checkoutBtn");
-
-    decrementBtn.addEventListener("click", function () {
-        updateQuantity(-1);
-    });
-
-    incrementBtn.addEventListener("click", function () {
-        updateQuantity(1);
-    });
-
-    // Event listener for checkout button
-    checkoutBtn.addEventListener("click", function () {
-        // Perform checkout process here
-        alert("Checkout functionality is not implemented yet."); // Placeholder for demonstration
-    });
-
     // Function to move slider
     function moveSlider(direction) {
         const slider = document.querySelector('.popular-books');
@@ -531,17 +563,94 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    document.addEventListener("DOMContentLoaded", function () {
+    // Event listener for the Save to CSV button
+    document.getElementById("saveToCSVBtn").addEventListener("click", function () {
+        const username = document.getElementById("username").innerText; // Get the username
+        const cartItems = Array.from(document.querySelectorAll("#cartItems li")).map(li => li.textContent); // Get cart items
+        saveCartToCSV(username, cartItems); // Call function to save to CSV
+    });
+});
 
-    // Function to add item to the cart
-function addToCart(bookTitle) {
-    // Check if the book is already in the cart
-    if (!cart.includes(bookTitle)) {
-        cart.push(bookTitle);
-        updateCartUI();
-    } else {
-        alert("This book is already added to the cart.");
-    }
+    // Function to save cart data to CSV format
+    function saveCartToCSV(username, cartItems) {
+    // Create a FormData object to send data to the server
+    const formData = new FormData();
+    formData.append("username", username);
+    cartItems.forEach(item => {
+        formData.append("cartItems", item);
+    });
+
+    // Send POST request to save-cart endpoint
+    fetch("/save-cart", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("Network response was not ok");
+        }
+    })
+    .then(data => {
+        // Handle successful response
+        alert(data.message);
+    })
+    .catch(error => {
+        // Handle error
+    });
 }
+
+
+
+ // Event listener for the checkout button
+document.getElementById("checkoutBtn").addEventListener("click", function() {
+    const cartItems = getCartItems();
+    const csv = generateCSV(cartItems);
+    downloadCSV(csv);
+});
+
+// Event listener for Add to Cart buttons
+document.addEventListener("DOMContentLoaded", function () {
+    const addToCartButtons = document.querySelectorAll(".add-to-cart-button");
+    addToCartButtons.forEach(button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent anchor tag's default behavior
+            const bookTitle = this.parentElement.querySelector("h3").textContent;
+            addToCart(bookTitle); // Add the book to cart
+        });
+    });
+
+    // Load cart from local storage
+    loadCartFromLocalStorage();
+});
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const signInButton = document.querySelector(".user-icon-button");
+
+    // Get the username from the server and display it
+    const usernameSpan = document.getElementById("username");
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    if (username) {
+        signInButton.innerHTML = username; // Change button text to "Profile"
+    }
+});
+
+
+
+// Function to remove item from the cart
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+    saveToLocalStorage(cart); // Save cart to local storage after removal
+}
+
+
 
 </script>
 </body>
