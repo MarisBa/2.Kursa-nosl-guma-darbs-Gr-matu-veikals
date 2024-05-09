@@ -70,7 +70,7 @@ public class RegistrationController {
                 mv.addObject("message", "Registration Successful");
                 
                 // Print user password to console
-                System.out.println("User password: " + password);
+                // System.out.println("User password: " + password);
                 
                 return mv;
             } else {
@@ -286,11 +286,12 @@ private void saveToCSV(UserRegistration user) {
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
+                System.out.println("Reading line: " + line);
                 String[] parts = line.split(",");
-                if (parts.length >= 12) { // Adjust if necessary
-                    String title = parts[0].trim(); // Adjust index for title
-                    String author = parts[4].trim();
-                    double price = Double.parseDouble(parts[3].trim());
+                if (parts.length >= 5) { // Check if enough fields are present
+                    String title = parts[0].trim(); // Index of title
+                    String author = parts[1].trim(); // Index of author
+                    double price = Double.parseDouble(parts[3].trim()); // Index of price
     
                     Book book = new Book();
                     book.setTitle(title);
@@ -298,12 +299,25 @@ private void saveToCSV(UserRegistration user) {
                     book.setPrice(price);
     
                     books.add(book);
+                } else {
+                    // Log or handle incomplete data
+                    System.out.println("Incomplete data: " + line);
                 }
             }
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
-            // Log or handle the exception
+            System.err.println("Error reading CSV file: " + e.getMessage());
         }
+        
+        // Print out the books read
+        // System.out.println("Books read from CSV:");
+        // for (Book book : books) {
+        //     System.out.println(book.getTitle() + " by " + book.getAuthor() + ", Price: " + book.getPrice());
+        // }
+        
         return books;
     }
+    
+
+    
 }
