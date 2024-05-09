@@ -437,8 +437,7 @@ background-color: #c82333; /* Darker red on hover */
         <h2>Your Cart</h2>
         <ul id="cartItems"></ul>
         <div id="cartControls">
-            <button id="saveToCSVBtn" class="save-button">Save to CSV</button>
-            <a href="/cart2"><button id="checkoutBtn">Checkout</button></a>
+            <button id="checkoutAndSaveBtn" class="save-button">Checkout </button>
         </div>
     </div>
 </div>
@@ -629,12 +628,12 @@ function openCartModal() {
 }
 
 
-
- // Event listener for the checkout button
-document.getElementById("checkoutBtn").addEventListener("click", function() {
-    const cartItems = getCartItems();
-    const csv = generateCSV(cartItems);
-    downloadCSV(csv);
+// Event listener for the Checkout & Save to CSV button
+document.getElementById("checkoutAndSaveBtn").addEventListener("click", function () {
+    const username = document.getElementById("username").innerText; // Get the username
+    const cartItems = Array.from(document.querySelectorAll("#cartItems li")).map(li => li.textContent); // Get cart items
+    saveCartToCSV(username, cartItems); // Call function to save to CSV
+    window.location.href = "/cart2"; // Redirect to cart page for checkout
 });
 
 // Event listener for Add to Cart buttons

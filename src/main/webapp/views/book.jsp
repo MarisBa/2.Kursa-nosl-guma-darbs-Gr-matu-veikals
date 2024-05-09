@@ -187,6 +187,16 @@
             <h3>$${book.price}</h3>
             <p>${book.about}</p>
 
+            <form action="/save-cart" method="post">
+                <input type="hidden" name="username" value="${username}">
+                <input type="hidden" name="bookName" value="${book.title}">
+                <input type="hidden" name="cartItems" value="${book.title} (${book.price}) Delete">
+                <button type="submit">
+                    <i class="fas fa-bookmark"></i>
+                    <span style="font-weight: lighter;">Add to cart</span>
+                </button>
+            </form>
+
             <div class="button-container">
                 <div class="quantity-container">
                     <button id="decrement" style="border-color: white;">-</button>
@@ -194,9 +204,10 @@
                     <button id="increment" style="border-color: white;">+</button>
                 </div>
                 <button id="addToCart">
-                    <i class="fa-regular fa-bookmark"></i>
+                    <i class="fas fa-bookmark"></i>
                     <span style="font-weight: lighter;">Add to cart</span>
                 </button>
+                
             </div>
         </div>
         <div class="details">
@@ -223,51 +234,42 @@
         </div>
     </div>
     <script>
-        // Get the quantity input and buttons
-        const quantityInput = document.getElementById('quantity');
-        const decrementButton = document.getElementById('decrement');
-        const incrementButton = document.getElementById('increment');
+// Get the quantity input and buttons
+const quantityInput = document.getElementById('quantity');
+    const decrementButton = document.getElementById('decrement');
+    const incrementButton = document.getElementById('increment');
 
-        // Add event listeners for increment and decrement buttons
-        decrementButton.addEventListener('click', () => {
-            decreaseQuantity();
-        });
+    // Add event listeners for increment and decrement buttons
+    decrementButton.addEventListener('click', () => {
+        decreaseQuantity();
+    });
 
-        incrementButton.addEventListener('click', () => {
-            increaseQuantity();
-        });
+    incrementButton.addEventListener('click', () => {
+        increaseQuantity();
+    });
 
-        // Function to decrease quantity
-        function decreaseQuantity() {
-            let currentValue = parseInt(quantityInput.value);
-            if (currentValue > 1) {
-                quantityInput.value = currentValue - 1;
-            }
+    // Function to decrease quantity
+    function decreaseQuantity() {
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
         }
+    }
 
-        // Function to increase quantity
-        function increaseQuantity() {
-            let currentValue = parseInt(quantityInput.value);
-            if (currentValue < 999) {
-                quantityInput.value = currentValue + 1;
-            }
+    // Function to increase quantity
+    function increaseQuantity() {
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue < 999) {
+            quantityInput.value = currentValue + 1;
         }
+    }
 
-            // Add event listener for Add to Cart button
-    addToCartButton.addEventListener('click', () => {
+    // Add event listener for Add to Cart button
+    document.getElementById('addToCart').addEventListener('click', () => {
         const quantity = parseInt(quantityInput.value);
         const bookId = "${book.id}"; // Assuming there is a book id available
         addToCart(bookId, quantity);
     });
-
-    // Function to add the book to cart
-    function addToCart(bookId, quantity) {
-        // Here you can perform actions like sending a request to the server to add the book to the cart
-        // For demonstration purposes, let's just log the book details
-        console.log("Book ID:", bookId);
-        console.log("Quantity:", quantity);
-        alert("Book added to cart!"); // You can replace this with any feedback message
-    }
     </script>
 </body>
 </html>
