@@ -293,20 +293,25 @@ background-color: #c82333; /* Darker red on hover */
     }
 
     .view-all-button {
+    margin-top: 20px;
+    display: inline-block; /* Display inline */
+}
+
+.view-all-books-button {
     padding: 10px 20px;
+    margin-bottom: 17px;
     background-color: #007bff; /* Blue color */
     color: #fff; /* White text color */
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    text-decoration: none;
-    outline: none; /* Remove outline */
 }
 
-.view-all-button:hover {
-    background-color: #0056b3; /* Darker shade of blue on hover */
+.view-all-books-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
 }
+
 
 
 
@@ -327,10 +332,12 @@ background-color: #c82333; /* Darker red on hover */
         </a>
         <a href="/Registration" class="user-icon-button"><i class="fa-regular fa-user"></i> Sign In</a>
         <span id="username"></span>
+        
     </div>
     <a href="/all-books" class="view-all-button">
         <button class="view-all-books-button">View All Books</button>
     </a>
+    
 </div>
 
 
