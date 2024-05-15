@@ -3,7 +3,17 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +25,7 @@ import com.example.demo.repository.UserRepo;
 
 
 import java.io.BufferedReader;
-
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -320,6 +330,29 @@ private void saveToCSV(UserRegistration user) {
         
         return books;
     }
+
+    @DeleteMapping("/remove-item")
+    public ResponseEntity<String> removeItem(@RequestParam("line") int line) {
+        try {
+            List<String> lines = Files.readAllLines(Paths.get("/workspaces/ProjectRepoNew/src/main/resources/cartForbooks.csv"));
+            if (line < 0 || line >= lines.size()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid line number");
+            }
+            lines.remove(line);
+            Files.write(Paths.get("/workspaces/ProjectRepoNew/src/main/resources/cartForbooks.csv"), lines);
+            return ResponseEntity.ok("Item removed successfully");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error removing item: " + e.getMessage());
+        }
+    }
+
+
 }
+
+
+
+
+
+
 
     

@@ -330,9 +330,11 @@ background-color: #c82333; /* Darker red on hover */
         <a href="/cart2" class="cart-icon-button">
             <button type="button"><i class="fa-solid fa-cart-shopping"></i></button>
         </a>
-        <a href="/Registration" class="user-icon-button"><i class="fa-regular fa-user"></i> Sign In</a>
-        <span id="username"></span>
-        
+    </a>
+    <a href="/Registration" class="user-icon-button"><i class="fa-regular fa-user"></i> Sign In</a>
+    <p><button id="username" class="username-button"></button></p>
+    
+    
     </div>
     <a href="/all-books" class="view-all-button">
         <button class="view-all-books-button">View All Books</button>
@@ -443,6 +445,23 @@ background-color: #c82333; /* Darker red on hover */
 </div>
 
 <script>
+
+document.getElementById("username").addEventListener("click", function() {
+    window.location.href = "/profile";
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const signInButton = document.querySelector(".user-icon-button");
+    // Get the username from the server and display it
+    const usernameSpan = document.getElementById("username");
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    if (username) {
+            usernameSpan.textContent = username;
+        signInButton.innerHTML = ""; // Change button text to "Profile"
+    }
+});
 // Function to add item to the cart
 function addToCart(bookTitle) {
     // Construct the data to be sent
@@ -497,7 +516,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 500);
         }
     }
-
 
 
 

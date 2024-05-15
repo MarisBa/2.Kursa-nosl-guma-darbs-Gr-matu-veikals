@@ -5,30 +5,56 @@
     <meta charset="UTF-8">
     <title>Cart</title>
     <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: #343a40;
+        }
         table {
-            width: 100%;
+            width: 80%;
             border-collapse: collapse;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0px 0px 20px #0000000f;
         }
         th, td {
-            border: 1px solid #dddddd;
+            border: 1px solid #dee2e6;
             text-align: left;
-            padding: 8px;
+            padding: 15px;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #343a40;
+            color: #fff;
         }
         tr:nth-child(even) {
-            background-color: #dddddd;
+            background-color: #f2f2f2;
         }
         .quantity-input {
             width: 50px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            text-align: center;
         }
         .remove-button {
-            background-color: #ff3333;
+            background-color: #dc3545;
             color: white;
             border: none;
-            padding: 5px 10px;
+            padding: 10px 20px;
             cursor: pointer;
+            border-radius: 5px;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        .remove-button:hover {
+            background-color: #c82333;
         }
     </style>
 </head>
@@ -53,7 +79,7 @@
                     %>
                     <tr>
                         <td><%= item %></td>
-                        <td><input type="number" class="quantity-input" value="1"></td>
+                        <td><input type="number" class="quantity-input" value="1" min="1"></td>
                         <td><button class="remove-button" onclick="removeItem(this)">Remove</button></td>
                     </tr>
                     <%
@@ -67,10 +93,23 @@
     </table>
 
     <script>
-        function removeItem(button) {
-            var row = button.parentNode.parentNode;
+function removeItem(button) {
+    var row = button.parentNode.parentNode;
+    var line = Array.from(row.parentNode.children).indexOf(row);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('DELETE', '/remove-item?line=' + line, true);
+    xhr.send();
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
             row.parentNode.removeChild(row);
+            alert('Item removed successfully');
+        } else {
+            alert('Failed to remove item');
         }
+    };
+}
     </script>
 </body>
 </html>
