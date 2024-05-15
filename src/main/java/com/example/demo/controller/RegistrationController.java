@@ -27,6 +27,7 @@ import com.example.demo.repository.UserRepo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -35,6 +36,8 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 
 
@@ -348,51 +351,9 @@ private void saveToCSV(UserRegistration user) {
     }
 
 
-    @WebServlet("/create-order")
-    public class CreateOrderServlet extends HttpServlet {
-        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            String cartFilePath = "/workspaces/ProjectRepoNew/src/main/resources/cartForbooks.csv";
-            String orderDirectoryPath = "/workspaces/ProjectRepoNew/src/main/resources/";
-    
-            try {
-                // Create a new CSV file for the order
-                String fileName = "order_" + System.currentTimeMillis() + ".csv";
-                File orderFile = new File(orderDirectoryPath, fileName);
-                boolean created = orderFile.createNewFile();
-    
-                if (created) {
-                    System.out.println("Order file created: " + orderFile.getAbsolutePath());
-    
-                    // Copy data from cart to order file
-                    BufferedReader reader = new BufferedReader(new FileReader(cartFilePath));
-                    PrintWriter writer = new PrintWriter(new FileWriter(orderFile));
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        writer.println(line);
-                    }
-                    reader.close();
-                    writer.close();
-    
-                    // Clear the cart after order creation
-                    clearCart();
-    
-                    response.setStatus(HttpServletResponse.SC_OK);
-                } else {
-                    System.err.println("Failed to create order file.");
-                    response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.err.println("Exception: " + e.getMessage());
-                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            }
-        }
-    
-        private void clearCart() {
-            // Logic to clear the cart, if needed
-        }
+
     }
-}
+
 
 
 

@@ -56,7 +56,7 @@
         .remove-button:hover {
             background-color: #c82333;
         }
-        .create-order-button {
+        .create-order-button, .create-csv-button {
             background-color: #007bff;
             color: white;
             border: none;
@@ -68,7 +68,7 @@
             display: block;
             margin: 20px auto;
         }
-        .create-order-button:hover {
+        .create-order-button:hover, .create-csv-button:hover {
             background-color: #0056b3;
         }
     </style>
@@ -86,7 +86,7 @@
         <tbody>
             <% 
             try {
-                java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(getServletContext().getRealPath("/WEB-INF/classes/cartForbooks.csv")));
+                java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader("/workspaces/ProjectRepoNew/src/main/resources/cartForbooks.csv"));
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split(",");
@@ -96,6 +96,7 @@
                         <td><%= item %></td>
                         <td><input type="number" class="quantity-input" value="1" min="1"></td>
                         <td><button class="remove-button" onclick="removeItem(this)">Remove</button></td>
+
                     </tr>
                     <%
                 }
@@ -128,21 +129,7 @@
             };
         }
 
-        function createOrder() {
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'create-order', true);
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhr.send();
 
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    alert('Order created successfully');
-                } else {
-                    alert('Failed to create order');
-                    console.log(xhr.responseText);
-                }
-            };
-        }
     </script>
 </body>
 </html>
