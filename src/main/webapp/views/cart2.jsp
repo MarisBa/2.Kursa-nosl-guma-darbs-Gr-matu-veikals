@@ -56,6 +56,21 @@
         .remove-button:hover {
             background-color: #c82333;
         }
+        .create-order-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 20px auto;
+        }
+        .create-order-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -71,7 +86,7 @@
         <tbody>
             <% 
             try {
-                java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader("/workspaces/ProjectRepoNew/src/main/resources/cartForbooks.csv"));
+                java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(getServletContext().getRealPath("/WEB-INF/classes/cartForbooks.csv")));
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split(",");
@@ -92,24 +107,42 @@
         </tbody>
     </table>
 
+    <button class="create-order-button" onclick="createOrder()">Create Order</button>
+
     <script>
-function removeItem(button) {
-    var row = button.parentNode.parentNode;
-    var line = Array.from(row.parentNode.children).indexOf(row);
+        function removeItem(button) {
+            var row = button.parentNode.parentNode;
+            var line = Array.from(row.parentNode.children).indexOf(row);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('DELETE', '/remove-item?line=' + line, true);
-    xhr.send();
+            var xhr = new XMLHttpRequest();
+            xhr.open('DELETE', '/remove-item?line=' + line, true);
+            xhr.send();
 
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            row.parentNode.removeChild(row);
-            alert('Item removed successfully');
-        } else {
-            alert('Failed to remove item');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    row.parentNode.removeChild(row);
+                    alert('Item removed successfully');
+                } else {
+                    alert('Failed to remove item');
+                }
+            };
         }
-    };
-}
+
+        function createOrder() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'create-order', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.send();
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    alert('Order created successfully');
+                } else {
+                    alert('Failed to create order');
+                    console.log(xhr.responseText);
+                }
+            };
+        }
     </script>
 </body>
 </html>
