@@ -327,7 +327,7 @@ background-color: #c82333; /* Darker red on hover */
             <input type="text" name="query" placeholder="Search for books...">
             <button type="submit" class="search-icon-button"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
-        <a href="#" class="cart-icon-button">
+        <a href="/cart2" class="cart-icon-button">
             <button type="button"><i class="fa-solid fa-cart-shopping"></i></button>
         </a>
         <a href="/Registration" class="user-icon-button"><i class="fa-regular fa-user"></i> Sign In</a>
@@ -443,129 +443,39 @@ background-color: #c82333; /* Darker red on hover */
 </div>
 
 <script>
-
-// Define cart array
-let cart = [];
-
-// Function to get cart items
-function getCartItems() {
-    return cart;
-}
-
-function displayCartItems() {
-    const cartItems = getCartItems();
-    if (cartItems.length > 0) {
-        console.log("Books in Cart:");
-        cartItems.forEach((item, index) => {
-            console.log(`${index + 1}. ${item}`);
-        });
-    } else {
-        console.log("Cart is empty.");
-    }
-}
-
 // Function to add item to the cart
 function addToCart(bookTitle) {
-    // Check if the book is already in the cart
-    if (!cart.includes(bookTitle)) {
-        cart.push(bookTitle);
-        updateCartUI();
-        saveToLocalStorage(cart); // Save cart to local storage
-        alert("Added to cart!"); // Show alert for demonstration
-    } else {
-        alert("This book is already added to the cart.");
-    }
-}
+    // Construct the data to be sent
+    var formData = new FormData();
+    formData.append('cartItems', bookTitle);
 
-    // Function to save cart to local storage
-function saveToLocalStorage(cartItems) {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-}
-
-// Function to load cart from local storage
-function loadCartFromLocalStorage() {
-    const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-        cart.push(...JSON.parse(savedCart));
-        updateCartUI();
-    }
-}
-
-
-
-
-
-
-// Function to save cart to local storage
-function saveToLocalStorage(cartItems) {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-}
-
-// Function to load cart from local storage
-function loadCartFromLocalStorage() {
-    const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-        cart.push(...JSON.parse(savedCart));
-        updateCartUI();
-    }
-}
-
-
-// Function to update the cart UI
-function updateCartUI() {
-    const cartItemsElement = document.getElementById("cartItems");
-    cartItemsElement.innerHTML = "";
-    cart.forEach((item, index) => {
-        const li = document.createElement("li");
-        const bookTitle = item.replace("Delete", "").trim(); // Remove "Delete" and trim spaces
-        li.textContent = bookTitle;
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Delete";
-        deleteButton.addEventListener("click", function() {
-            removeFromCart(index);
-        });
-        li.appendChild(deleteButton);
-        cartItemsElement.appendChild(li);
-    });
-}
-
-
-
-
-
-
-
-
-// Event listener for opening the cart modal
-const cartButton = document.querySelector(".cart-icon-button");
-cartButton.addEventListener("click", function() {
-    openCartModal();
-});
-
-// Function to open the cart modal
-function openCartModal() {
-    const modal = document.getElementById("cartModal");
-    modal.style.display = "block";
-}
-
- // Function to close the cart modal
- function closeCartModal() {
-        const modal = document.getElementById("cartModal");
-        modal.style.display = "none";
-        // Also clear the cart when closing the modal
-        cart.length = 0;
-        updateCartUI();
-        localStorage.removeItem('cart'); // Remove cart from local storage
-    }
-
-    // Event listener for closing the cart modal
-    document.addEventListener("click", function(event) {
-        const modal = document.getElementById("cartModal");
-        const closeButton = document.querySelector(".close");
-        if (event.target === modal || event.target === closeButton) {
-            closeCartModal();
+    // Send data to server
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/save-cart", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                alert("Added to cart!"); // Update the success message here
+            } else {
+                console.error("Error adding book to cart:", xhr.statusText);
+            }
+            console.log(xhr.responseText); // Log the response from the server
         }
+    };
+    xhr.send(formData);
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const addToCartButtons = document.querySelectorAll(".add-to-cart-button");
+    addToCartButtons.forEach(button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent anchor tag's default behavior
+            const bookTitle = this.parentElement.querySelector("h3").textContent;
+            addToCart(bookTitle); // Add the book to cart
+        });
     });
+});
     // Function to move slider
     function moveSlider(direction) {
         const slider = document.querySelector('.popular-books');
@@ -588,92 +498,6 @@ function openCartModal() {
         }
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-    // Event listener for the Save to CSV button
-    document.getElementById("saveToCSVBtn").addEventListener("click", function () {
-        const username = document.getElementById("username").innerText; // Get the username
-        const cartItems = Array.from(document.querySelectorAll("#cartItems li")).map(li => li.textContent); // Get cart items
-        saveCartToCSV(username, cartItems); // Call function to save to CSV
-    });
-});
-
-    // Function to save cart data to CSV format
-    function saveCartToCSV(username, cartItems) {
-    // Create a FormData object to send data to the server
-    const formData = new FormData();
-    formData.append("username", username);
-    cartItems.forEach(item => {
-        formData.append("cartItems", item);
-    });
-
-    // Send POST request to save-cart endpoint
-    fetch("/save-cart", {
-        method: "POST",
-        body: formData
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error("Network response was not ok");
-        }
-    })
-    .then(data => {
-        // Handle successful response
-        alert(data.message);
-    })
-    .catch(error => {
-        // Handle error
-    });
-}
-
-
-// Event listener for the Checkout & Save to CSV button
-document.getElementById("checkoutAndSaveBtn").addEventListener("click", function () {
-    const username = document.getElementById("username").innerText; // Get the username
-    const cartItems = Array.from(document.querySelectorAll("#cartItems li")).map(li => li.textContent); // Get cart items
-    saveCartToCSV(username, cartItems); // Call function to save to CSV
-    window.location.href = "/cart2"; // Redirect to cart page for checkout
-});
-
-// Event listener for Add to Cart buttons
-document.addEventListener("DOMContentLoaded", function () {
-    const addToCartButtons = document.querySelectorAll(".add-to-cart-button");
-    addToCartButtons.forEach(button => {
-        button.addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent anchor tag's default behavior
-            const bookTitle = this.parentElement.querySelector("h3").textContent;
-            addToCart(bookTitle); // Add the book to cart
-        });
-    });
-
-    // Load cart from local storage
-    loadCartFromLocalStorage();
-});
-
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const signInButton = document.querySelector(".user-icon-button");
-
-    // Get the username from the server and display it
-    const usernameSpan = document.getElementById("username");
-    const urlParams = new URLSearchParams(window.location.search);
-    const username = urlParams.get('username');
-    if (username) {
-        signInButton.innerHTML = username; // Change button text to "Profile"
-    }
-});
-
-
-
-// Function to remove item from the cart
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCartUI();
-    saveToLocalStorage(cart); // Save cart to local storage after removal
-}
 
 
 

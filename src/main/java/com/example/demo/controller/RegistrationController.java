@@ -21,6 +21,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 
 
@@ -215,14 +218,14 @@ private void saveToCSV(UserRegistration user) {
     
 
     @PostMapping("/save-cart")
-    public ModelAndView saveCart(@RequestParam("username") String username, @RequestParam("cartItems") List<String> cartItems) {
+    public ModelAndView saveCart(@RequestParam("cartItems") List<String> cartItems) {
         try {
             String csvFilePath = "/workspaces/ProjectRepoNew/src/main/resources/cartForbooks.csv";
             FileWriter csvWriter = new FileWriter(csvFilePath, true); // Append mode
             for (String item : cartItems) {
                 // Remove "Delete" text and trim spaces
                 String cleanedItem = item.replace("Delete", "").trim();
-                csvWriter.append(username + cleanedItem + "\n"); // Add comma between username and item
+                csvWriter.append(cleanedItem + "\n"); // Write only the book title
             }
             csvWriter.flush();
             csvWriter.close();
@@ -317,7 +320,6 @@ private void saveToCSV(UserRegistration user) {
         
         return books;
     }
-    
+}
 
     
-}

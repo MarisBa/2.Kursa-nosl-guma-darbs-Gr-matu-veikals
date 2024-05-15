@@ -121,13 +121,6 @@
             text-align: center;
         }
 
-        .button-container {
-            text-align: center; /* Center the button horizontally */
-            margin-top: 20px;
-            margin-left: 50px; /* Add some space between the text and the button */
-            padding: 10px 20px; /* Increase padding */
-        }
-
         .button-container button {
             font-size: 20px; /* Increase the font size */
             font-weight: bold; /* Set font weight to bold */
@@ -137,6 +130,9 @@
             transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for background color, text color, and border color */
             width: 200px; /* Increase width */
             height: 40px; /* Increase height */
+            display: flex; /* Add display flex to align icon and text */
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
         }
 
         .button-container button:hover {
@@ -175,6 +171,25 @@
             background-color: grey; /* Fills the icon with red color */
             padding: 2px; /* Adds padding to the icon */
         }
+        .button-container #addToCart {
+            background-color: #fff; /* Adjust background color here */
+            color: #000; /* Adjust text color here */
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 20px; /* Adjust font size */
+            font-weight: bold; /* Adjust font weight */
+            padding: 10px 20px; /* Adjust padding */
+            border: 1px solid #000; /* Adjust border color */
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for background color, text color, and border color */
+            display: flex; /* Add display flex to align icon and text */
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+        }
+
+        .button-container #addToCart:hover {
+            background-color: #000; /* Adjust hover background color here */
+            color: #fff; /* Adjust hover text color here */
+        }
     </style>
 </head>
 <body>
@@ -187,15 +202,14 @@
             <h3>$${book.price}</h3>
             <p>${book.about}</p>
 
-            <form action="/save-cart" method="post">
+            <form id="cartForm" action="/save-cart" method="post">
                 <input type="hidden" name="username" value="${username}">
                 <input type="hidden" name="bookName" value="${book.title}">
-                <input type="hidden" name="cartItems" value="${book.title} (${book.price}) Delete">
-                <button type="submit">
-                    <i class="fas fa-bookmark"></i>
-                    <span style="font-weight: lighter;">Add to cart</span>
-                </button>
+                <input type="hidden" name="bookPrice" value="${book.price}">
+                <input type="hidden" name="quantity" value="1">
+
             </form>
+            
 
             <div class="button-container">
                 <div class="quantity-container">
@@ -203,9 +217,8 @@
                     <input type="number" id="quantity" value="1" min="1" max="999">
                     <button id="increment" style="border-color: white;">+</button>
                 </div>
-                <button id="addToCart">
-                    <i class="fas fa-bookmark"></i>
-                    <span style="font-weight: lighter;">Add to cart</span>
+                <button id="addToCart" onclick="addToCart()">
+                    <i class="fas fa-bookmark"></i> Add to Cart
                 </button>
                 
             </div>
@@ -264,12 +277,51 @@ const quantityInput = document.getElementById('quantity');
         }
     }
 
-    // Add event listener for Add to Cart button
-    document.getElementById('addToCart').addEventListener('click', () => {
-        const quantity = parseInt(quantityInput.value);
-        const bookId = "${book.id}"; // Assuming there is a book id available
-        addToCart(bookId, quantity);
-    });
+    function addToCart() {
+    // Get book data
+    var bookTitle = "${book.title}";
+
+    // Construct the data to be sent
+    var formData = new FormData();
+    formData.append('cartItems', bookTitle);
+
+    // Send data to server
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/save-cart", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                alert("Book added to cart!");
+            } else {
+                console.error("Error adding book to cart:", xhr.statusText);
+            }
+            console.log(xhr.responseText); // Log the response from the server
+        }
+    };
+    xhr.send(formData);
+}
+
+
+
+document.getElementById('myButton').addEventListener('click', function(event) {
+    event.preventDefault();
+
+    var formData = new FormData();
+    var bookTitle = document.querySelector('input[name="bookName"]').value;
+    formData.append('cartItems', bookTitle);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/save-cart', true);
+    xhr.send(formData);
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            alert('Book added to cart successfully');
+        } else {
+            alert('Failed to add book to cart');
+        }
+    };
+});
     </script>
 </body>
 </html>
