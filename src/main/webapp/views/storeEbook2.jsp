@@ -157,6 +157,23 @@
             align-self: center; /* Center the button horizontally */
         }
 
+        .slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.slider .slide {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1), transform 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transform: translateX(-100%);
+}
+
+.slider .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+}
 #cartModal {
     display: none;
     position: fixed;
@@ -312,7 +329,10 @@ background-color: #c82333; /* Darker red on hover */
     background-color: #0056b3; /* Darker shade on hover */
 }
 
-
+.slider {
+    scroll-behavior: smooth;
+    /* other styles */
+}
 
 
     </style>
@@ -323,10 +343,7 @@ background-color: #c82333; /* Darker red on hover */
 <div class="header-container">
     <img class="logo" src="https://cdn.shopify.com/s/files/1/0277/3830/8642/files/labrsbkstorelogo.jpg?height=628&pad_color=ffffff&v=1614777541&width=1200" alt="Logo">
     <div class="search-bar">
-        <form action="/SearchServlet" method="get">
-            <input type="text" name="query" placeholder="Search for books...">
-            <button type="submit" class="search-icon-button"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
+
         <a href="/cart2" class="cart-icon-button">
             <button type="button"><i class="fa-solid fa-cart-shopping"></i></button>
         </a>
@@ -346,7 +363,7 @@ background-color: #c82333; /* Darker red on hover */
 
     
     
-    <div class="popular-books-slider">
+    <div  id="mySlider"class="slider">
         <div class="popular-books">
             <div class="book-card">
                 <a href="/admin/book/2">
@@ -422,10 +439,6 @@ background-color: #c82333; /* Darker red on hover */
             </div>
             <!-- Add more book cards as needed -->
         </div>
-        <div class="slider-nav">
-            <button id="prevBtn" onclick="moveSlider(-1)">&#10094;</button>
-            <button id="nextBtn" onclick="moveSlider(1)">&#10095;</button>
-        </div>
     </div>
 
 <!-- Cart Modal -->
@@ -443,7 +456,10 @@ background-color: #c82333; /* Darker red on hover */
         </div>
     </div>
 </div>
-
+<div class="slider-nav">
+    <button id="prevBtn" onclick="moveSlider(-1)">&#10094;</button>
+    <button id="nextBtn" onclick="moveSlider(1)">&#10095;</button>
+</div>
 <script>
 
 document.getElementById("username").addEventListener("click", function() {
@@ -516,6 +532,33 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 500);
         }
     }
+
+    let slider = document.getElementById('mySlider');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener('mousedown', (e) => {
+  isDown = true;
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+});
+
+slider.addEventListener('mouseleave', () => {
+  isDown = false;
+});
+
+slider.addEventListener('mouseup', () => {
+  isDown = false;
+});
+
+slider.addEventListener('mousemove', (e) => {
+  if(!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 3; //scroll-fast
+  slider.scrollLeft = scrollLeft - walk;
+});
 
 
 
