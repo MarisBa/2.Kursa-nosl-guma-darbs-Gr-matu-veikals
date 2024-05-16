@@ -350,11 +350,14 @@ private void saveToCSV(UserRegistration user) {
         }
     }
 
-
-
+    @GetMapping("/profile")
+    public ModelAndView getProfile() {
+        // Add code here to retrieve and display user profile information
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("profile"); // This assumes "profile.jsp" exists in your configured view resolver
+        return mv;
     }
-
-
+}
 
 
 
