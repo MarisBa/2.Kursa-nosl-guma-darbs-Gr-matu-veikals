@@ -43,14 +43,14 @@
         }
     </style>
 </head>
-    <div class="container">
-        <h1>User Profile</h1>
-        <div class="profile-info">
-            <p>Welcome, <span id="username"><%= session.getAttribute("username") %></span>!</p>
-            <p>Account created on: <span id="creationDate"><%= new java.util.Date() %></span></p>
-        </div>
-        <button class="btn" onclick="goBack()">Back</button>
+<div class="container">
+    <h1>User Profile</h1>
+    <div class="profile-info">
+        <p>Welcome, <span id="username"><%= session.getAttribute("username") %></span>!</p>
+        <p>Account created on: <span id="creationDate"><%= new java.util.Date() %></span></p>
     </div>
+    <button class="btn" onclick="goBack()">Back</button>
+</div>
 </body>
 <script>
     function goBack() {

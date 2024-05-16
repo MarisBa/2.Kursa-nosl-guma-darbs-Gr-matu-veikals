@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -357,6 +360,48 @@ private void saveToCSV(UserRegistration user) {
         mv.setViewName("profile"); // This assumes "profile.jsp" exists in your configured view resolver
         return mv;
     }
+    
+    @PostMapping("/create-order")
+    @ResponseBody
+    public ResponseEntity<String> createOrder(@RequestBody List<Map<String, String>> items) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+            String directoryPath = "/workspaces/ProjectRepoNew/src/main/resources/orders/";
+            File directory = new File(directoryPath);
+            
+            // Create the directory if it doesn't exist
+            if (!directory.exists()) {
+                directory.mkdirs(); // Creates all directories required
+            }
+    
+            Calendar calendar = Calendar.getInstance();
+            String currentTime = dateFormat.format(calendar.getTime());
+    
+            if (currentTime.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Date format is empty");
+            }
+    
+            String fileName = directoryPath + "order_" + currentTime + ".csv";
+            
+            FileWriter writer = new FileWriter(fileName);
+            writer.append("Item, Quantity\n");
+    
+            for (Map<String, String> item : items) {
+                String itemName = item.get("name");
+                String itemQuantity = item.get("quantity");
+    
+                writer.append(itemName + ", " + itemQuantity + "\n");
+            }
+    
+            writer.flush();
+            writer.close();
+    
+            return ResponseEntity.ok("Order created successfully");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create order: " + e.getMessage());
+        }
+    }
 }
 
 
@@ -364,3 +409,5 @@ private void saveToCSV(UserRegistration user) {
 
 
     
+//            Calendar calendar = Calendar.getInstance();
+//String currentTime = dateFormat.format(calendar.getTime());

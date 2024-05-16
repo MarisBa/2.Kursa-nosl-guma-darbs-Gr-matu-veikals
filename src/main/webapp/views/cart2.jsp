@@ -128,8 +128,32 @@
                 }
             };
         }
+        function createOrder() {
+        var rows = document.querySelectorAll("tbody tr");
+        var items = [];
 
+        rows.forEach(function(row) {
+            var item = {
+                name: row.cells[0].innerText,
+                quantity: row.querySelector(".quantity-input").value
+            };
+            items.push(item);
+        });
 
+        // Convert items to JSON and send to server
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/create-order', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(items)); // Send items array directly
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                alert(xhr.responseText); // Show response from server
+            } else {
+                alert('Failed to create order');
+            }
+        };
+    }
     </script>
 </body>
 </html>
